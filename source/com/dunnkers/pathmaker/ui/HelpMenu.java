@@ -16,9 +16,6 @@ import com.dunnkers.pathmaker.Configuration;
 
 public class HelpMenu extends JMenu {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private final JLabel aboutTitle;

@@ -15,9 +15,6 @@ import javax.swing.event.ChangeListener;
  */
 public class ListenedArrayList<T> extends ArrayList<T> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final ChangeListener changeListener;
 

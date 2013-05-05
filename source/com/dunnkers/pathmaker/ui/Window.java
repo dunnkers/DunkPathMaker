@@ -38,9 +38,6 @@ import com.dunnkers.pathmaker.util.TileMode;
 // TODO remove unnecessary init methods
 public class Window extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final ButtonBar buttonBar;
 	private final ToolBar toolBar;
@@ -68,9 +65,6 @@ public class Window extends JFrame {
 				worldMapView);
 
 		toolBar = new ToolBar("Tools", worldMapController, getWindowComponent()) {
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -138,9 +132,6 @@ public class Window extends JFrame {
 
 	public class ButtonBar extends JMenuBar {
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		private final SettingsMenu settingsMenu;
 		private final MapMenu mapMenu;
@@ -166,9 +157,6 @@ public class Window extends JFrame {
 
 	public class SettingsMenu extends JMenu {
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		private final ButtonGroup buttonGroup;
 		private final JRadioButtonMenuItem path;
@@ -250,9 +238,6 @@ public class Window extends JFrame {
 
 	public class CodeFormatMenu extends JMenu {
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		private final ButtonGroup buttonGroup;
 		private final ArrayList<JRadioButtonMenuItem> codeFormats;

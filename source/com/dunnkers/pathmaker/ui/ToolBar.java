@@ -20,9 +20,6 @@ import com.dunnkers.pathmaker.util.CodeFormat;
 
 public abstract class ToolBar extends JToolBar {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final WorldMapController worldMapController;
 

@@ -8,7 +8,6 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -26,9 +25,6 @@ import com.dunnkers.util.Graphic;
  */
 public class WorldMapView extends JScrollPane {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final WorldMapModel worldMapModel;
 	private final WorldMapLabel label;
@@ -53,9 +49,6 @@ public class WorldMapView extends JScrollPane {
 
 	private class WorldMapLabel extends JLabel {
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 
 		public WorldMapLabel(String text) {
@@ -128,7 +121,6 @@ public class WorldMapView extends JScrollPane {
 				}
 				break;
 			}
-			// draw a line to mouse position
 			final Point lastPoint = TileMath.getPoint(worldMapModel.getTileArray()
 					.get(worldMapModel.getTileArray().size()-1));
 			switch (worldMapModel.getMode()) {

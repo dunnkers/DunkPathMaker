@@ -9,9 +9,6 @@ import javax.swing.JRadioButtonMenuItem;
  */
 public class MapMenu extends JMenu {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final ButtonGroup buttonGroup;
 	private final JRadioButtonMenuItem oldschool;
