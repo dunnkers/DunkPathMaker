@@ -23,6 +23,7 @@ public class DunkPathMaker {
 		window.setVisible(true);
 	}
 
+	// adds an application track record to this analytic id
 	private static void track() {
 		final JGoogleAnalyticsTracker tracker = new JGoogleAnalyticsTracker(Configuration.APPLICATION_TITLE,
 				String.valueOf(Configuration.APPLICATION_VERSION),
