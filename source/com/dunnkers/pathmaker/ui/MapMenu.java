@@ -4,9 +4,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 
-/*
- * TODO is actually part of 'settings'
- */
 public class MapMenu extends JMenu {
 
 	private static final long serialVersionUID = 1L;

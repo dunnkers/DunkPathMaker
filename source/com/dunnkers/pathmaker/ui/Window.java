@@ -34,8 +34,6 @@ import com.dunnkers.pathmaker.util.TileMode;
  * 
  * @author Dunnkers
  */
-// TODO add icons, as used in the previous version of dunkpathmaker.
-// TODO remove unnecessary init methods
 public class Window extends JFrame {
 
 	private static final long serialVersionUID = 1L;
