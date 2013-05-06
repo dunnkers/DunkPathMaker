@@ -11,7 +11,7 @@ import com.dunnkers.util.Resource;
 public class Configuration {
 
 	public static final double APPLICATION_VERSION_MAJOR = 2;
-	public static final double APPLICATION_VERSION_MINOR = 0.00;
+	public static final double APPLICATION_VERSION_MINOR = 0.01;
 	public static final double APPLICATION_VERSION = APPLICATION_VERSION_MAJOR
 			+ APPLICATION_VERSION_MINOR;
 	public static final String APPLICATION_TITLE = "DunkPathMaker";
