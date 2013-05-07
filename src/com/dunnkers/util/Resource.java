@@ -33,7 +33,7 @@ public class Resource {
 					.getResource(path));
 			return new ImageIcon(image);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+            return new ImageIcon(path);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
