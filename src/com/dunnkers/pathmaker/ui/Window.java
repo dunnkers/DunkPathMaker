@@ -20,6 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSlider;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
@@ -30,6 +31,7 @@ import com.dunnkers.pathmaker.ui.worldmap.WorldMapView;
 import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMath;
 import com.dunnkers.pathmaker.util.TileMode;
+import com.dunnkers.util.resource.ResourcePath;
 
 /**
  * 
@@ -75,8 +77,8 @@ public class Window extends JFrame {
 		this.setTitle(Configuration.WINDOW_TITLE);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		final ArrayList<Image> icons = new ArrayList<Image>();
-		for (final String ICON_MAP_X : Configuration.ICON_MAP) {
-			icons.add(Configuration.RESOURCE.getImage(ICON_MAP_X));
+		for (final ResourcePath ICON_MAP_X : Configuration.ICON_MAP) {
+			icons.add(ICON_MAP_X.getImage());
 		}
 		this.setIconImages(icons);
 		init();
@@ -143,8 +145,11 @@ public class Window extends JFrame {
 
 		public ButtonBar() {
 			this.settingsMenu = new SettingsMenu("Settings");
+			this.settingsMenu.setIcon(Configuration.ICON_SETTINGS.getIcon());
 			this.mapMenu = new MapMenu("Map");
+			this.mapMenu.setIcon(Configuration.ICON_MAP_16.getIcon());
 			this.help = new HelpMenu("Help", getWindowComponent());
+			this.help.setIcon(Configuration.ICON_HELP.getIcon());
 			init();
 		}
 
@@ -181,6 +186,7 @@ public class Window extends JFrame {
 						worldMapView.repaintLabel();
 					}
 				});
+				this.path.setIcon(Configuration.ICON_PATH.getIcon());
 			}
 			{
 				this.area = new JRadioButtonMenuItem("Area");
@@ -192,12 +198,13 @@ public class Window extends JFrame {
 						worldMapView.repaintLabel();
 					}
 				});
+				this.area.setIcon(Configuration.ICON_AREA.getIcon());
 			}
 			this.buttonGroup.add(path);
 			this.buttonGroup.add(area);
 
 			this.codeFormatMenu = new CodeFormatMenu("Code Format");
-
+			this.codeFormatMenu.setIcon(UIManager.getIcon("FileView.fileIcon"));
 			{
 				this.sensitivity = new JMenuItem("Drag sensitivity");
 				this.sensitivity.addActionListener(new ActionListener() {
@@ -207,6 +214,7 @@ public class Window extends JFrame {
 						showInputDialog();
 					}
 				});
+				this.sensitivity.setIcon(Configuration.ICON_MOUSE.getIcon());
 				this.sensitivitySlider = new JSlider(0, 30);
 				this.sensitivitySlider.setMinorTickSpacing(1);
 				this.sensitivitySlider.setMajorTickSpacing(5);

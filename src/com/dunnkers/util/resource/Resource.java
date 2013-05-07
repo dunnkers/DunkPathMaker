@@ -1,4 +1,4 @@
-package com.dunnkers.util;
+package com.dunnkers.util.resource;
 
 import java.awt.Image;
 import java.io.File;

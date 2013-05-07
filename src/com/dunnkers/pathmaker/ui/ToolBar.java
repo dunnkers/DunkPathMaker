@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.UIManager;
 
+import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
 import com.dunnkers.pathmaker.util.CodeFormat;
 
@@ -44,6 +45,7 @@ public abstract class ToolBar extends JToolBar {
 					worldMapController.undo();
 				}
 			});
+			this.undo.setIcon(Configuration.ICON_UNDO.getIcon());
 		}
 		{
 			this.redo = new JButton("Redo");
@@ -55,17 +57,19 @@ public abstract class ToolBar extends JToolBar {
 					worldMapController.redo();
 				}
 			});
+			this.redo.setIcon(Configuration.ICON_REDO.getIcon());
 		}
 		{
 			this.clear = new JButton("Clear");
-			this.getClear().setEnabled(false);
-			this.getClear().addActionListener(new ActionListener() {
+			this.clear.setEnabled(false);
+			this.clear.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					worldMapController.clearTiles();
 				}
 			});
+			this.clear.setIcon(Configuration.ICON_CLEAR.getIcon());
 		}
 		{
 			this.generateTextArea = new JTextArea("No code generated", 20, 30);
