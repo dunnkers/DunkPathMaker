@@ -1,5 +1,11 @@
 package com.dunnkers.pathmaker;
 
+import java.awt.Image;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 import com.dmurph.tracking.AnalyticsConfigData;
 import com.dmurph.tracking.AnalyticsRequestData;
 import com.dmurph.tracking.JGoogleAnalyticsTracker;

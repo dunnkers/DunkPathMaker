@@ -3,6 +3,7 @@ package com.dunnkers.pathmaker.ui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,12 +24,14 @@ import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 import com.dunnkers.pathmaker.Configuration;
+import com.dunnkers.pathmaker.DunkPathMaker;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapView;
 import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMath;
 import com.dunnkers.pathmaker.util.TileMode;
+import com.dunnkers.util.Resource;
 
 /**
  * 
@@ -73,6 +76,11 @@ public class Window extends JFrame {
 
 		this.setTitle(Configuration.WINDOW_TITLE);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		ArrayList<Image> icons = new ArrayList<Image>();
+		icons.add(Configuration.RESOURCE.getImage("resources/icon-map-16x16.png"));
+		//icons.add(Resource.icon("resources/icon-map-32x32.png").getImage());
+		/*icons.add(Configuration.RESOURCE.getIcon("resources/icon-map-48x48.png").getImage());*/
+		this.setIconImages(icons);
 		init();
 	}
 
