@@ -3,13 +3,9 @@ package com.dunnkers.util;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
-import com.dunnkers.pathmaker.DunkPathMaker;
 
 /**
  * 
@@ -31,32 +27,30 @@ public class Resource {
 		try {
 			final Image image = ImageIO.read(getResourceClass().getClassLoader()
 					.getResource(path));
+			System.out.println("loadin icon! fom liek dat..");
 			return new ImageIcon(image);
 		} catch (IllegalArgumentException e) {
+			System.out.println("loadin icon! fom IllegalArgumentException");
             return new ImageIcon(path);
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	public Image getImage(final String path) {
 		try {
 			final Image image = ImageIO.read(getResourceClass().getClassLoader()
 					.getResource(path));
-			System.out.println("omygod.");
+			System.out.println("loadin image! fom liek dat..");
 			return image;
 		} catch (IllegalArgumentException e) {
-			System.out.println("dude. lols.");
+			System.out.println("loadin image! fom IllegalArgumentException");
 			try {
 				return ImageIO.read(new File(path));
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			/*final ImageIcon imageIcon = new ImageIcon(path);
-			if (imageIcon != null) {
-				return imageIcon.getImage();
-			}*/
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

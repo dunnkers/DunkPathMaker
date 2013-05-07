@@ -24,14 +24,12 @@ import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 import com.dunnkers.pathmaker.Configuration;
-import com.dunnkers.pathmaker.DunkPathMaker;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapView;
 import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMath;
 import com.dunnkers.pathmaker.util.TileMode;
-import com.dunnkers.util.Resource;
 
 /**
  * 
