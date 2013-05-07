@@ -21,7 +21,7 @@ public class Configuration {
 			+ APPLICATION_VERSION + " - " + APPLICATION_ALIAS;
 	public static final Dimension WINDOW_SIZE = new Dimension(750, 600);
 
-	public static final String LOCAL_MAP_PATH = "resources/runescape-map-07.jpg";
+	public static final String LOCAL_MAP_PATH = "res/runescape-map-07.jpg";
 
 	public static final Resource RESOURCE = new Resource(DunkPathMaker.class);
 	public static final int INITIAL_DRAG_SENSITIVITY = 5;
