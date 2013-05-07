@@ -21,7 +21,14 @@ public class Configuration {
 			+ APPLICATION_VERSION + " - " + APPLICATION_ALIAS;
 	public static final Dimension WINDOW_SIZE = new Dimension(750, 600);
 
-	public static final String LOCAL_MAP_PATH = "res/runescape-map-07.jpg";
+	public static final String IMAGE_MAP_PATH = "res/runescape-map-07.jpg";
+	public static final String ICON_MAP_16 = "res/icon-map-16x16.png";
+	public static final String ICON_MAP_32 = "res/icon-map-32x32.png";
+	public static final String ICON_MAP_48 = "res/icon-map-48x48.png";
+	public static final String[] ICON_MAP = {
+			ICON_MAP_16,
+			ICON_MAP_32,
+			ICON_MAP_48 };
 
 	public static final Resource RESOURCE = new Resource(DunkPathMaker.class);
 	public static final int INITIAL_DRAG_SENSITIVITY = 5;

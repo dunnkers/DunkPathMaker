@@ -74,10 +74,10 @@ public class Window extends JFrame {
 
 		this.setTitle(Configuration.WINDOW_TITLE);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		ArrayList<Image> icons = new ArrayList<Image>();
-		icons.add(Configuration.RESOURCE.getImage("res/icon-map-16x16.png"));
-		//icons.add(Resource.icon("resources/icon-map-32x32.png").getImage());
-		/*icons.add(Configuration.RESOURCE.getIcon("resources/icon-map-48x48.png").getImage());*/
+		final ArrayList<Image> icons = new ArrayList<Image>();
+		for (final String ICON_MAP_X : Configuration.ICON_MAP) {
+			icons.add(Configuration.RESOURCE.getImage(ICON_MAP_X));
+		}
 		this.setIconImages(icons);
 		init();
 	}
