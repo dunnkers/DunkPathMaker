@@ -5,6 +5,7 @@
 # Compiled source #
 ###################
 bin
+build
 *.com
 *.class
 *.dll
