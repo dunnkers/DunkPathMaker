@@ -24,28 +24,17 @@ public class Resource {
 	}
 
 	public ImageIcon getIcon(final String path) {
-		try {
-			final Image image = ImageIO.read(getResourceClass().getClassLoader()
-					.getResource(path));
-			System.out.println("loadin icon! fom liek dat..");
-			return new ImageIcon(image);
-		} catch (IllegalArgumentException e) {
-			System.out.println("loadin icon! fom IllegalArgumentException");
-            return new ImageIcon(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
+		return new ImageIcon(getImage(path));
 	}
 
 	public Image getImage(final String path) {
 		try {
+			/* when loaded from .jar */
 			final Image image = ImageIO.read(getResourceClass().getClassLoader()
 					.getResource(path));
-			System.out.println("loadin image! fom liek dat..");
 			return image;
 		} catch (IllegalArgumentException e) {
-			System.out.println("loadin image! fom IllegalArgumentException");
+			/* when loaded from classes */
 			try {
 				return ImageIO.read(new File(path));
 			} catch (IOException e1) {
@@ -56,20 +45,4 @@ public class Resource {
 		}
 		return null;
 	}
-	
-	/*public static ImageIcon icon(String path) {
-        ImageIcon icon = null;
-        try {
-            icon = new ImageIcon(ImageIO.read(DunkPathMaker.class.getClassLoader().getResource(path)));
-        } catch (IllegalArgumentException e) {
-        } catch (IOException e) {
-        }
-
-        if (icon == null) {
-        	System.out.println("doin dis shid manuluy ofc.");
-            icon = new ImageIcon(path);
-        }
-
-        return icon;
-    }*/
 }
