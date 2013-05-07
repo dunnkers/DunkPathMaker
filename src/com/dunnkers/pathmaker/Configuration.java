@@ -22,24 +22,37 @@ public class Configuration {
 			+ APPLICATION_VERSION + " - " + APPLICATION_ALIAS;
 	public static final Dimension WINDOW_SIZE = new Dimension(750, 600);
 
-	// TODO ResourcePath: only store Resource once; it is now stored in all ResourcePaths
+	// TODO ResourcePath: only store Resource once; it is now stored in all
+	// ResourcePaths
 	public static final Resource RESOURCE = new Resource(DunkPathMaker.class);
-	public static final ResourcePath IMAGE_MAP_PATH = new ResourcePath(RESOURCE, "res/runescape-map-07.jpg");
-	public static final ResourcePath ICON_MAP_16 = new ResourcePath(RESOURCE, "res/icon-map-16x16.png");
-	public static final ResourcePath ICON_MAP_32 = new ResourcePath(RESOURCE, "res/icon-map-32x32.png");
-	public static final ResourcePath ICON_MAP_48 = new ResourcePath(RESOURCE, "res/icon-map-48x48.png");
+	public static final ResourcePath IMAGE_MAP_PATH = new ResourcePath(RESOURCE,
+			"res/runescape-map-07.jpg");
+	public static final ResourcePath ICON_MAP_16 = new ResourcePath(RESOURCE,
+			"res/icon-map-16x16.png");
+	public static final ResourcePath ICON_MAP_32 = new ResourcePath(RESOURCE,
+			"res/icon-map-32x32.png");
+	public static final ResourcePath ICON_MAP_48 = new ResourcePath(RESOURCE,
+			"res/icon-map-48x48.png");
 	public static final ResourcePath[] ICON_MAP = {
 			ICON_MAP_16,
 			ICON_MAP_32,
 			ICON_MAP_48 };
-	public static final ResourcePath ICON_AREA = new ResourcePath(RESOURCE, "res/icon-area.png");
-	public static final ResourcePath ICON_MOUSE = new ResourcePath(RESOURCE, "res/icon-mouse.png");
-	public static final ResourcePath ICON_PATH = new ResourcePath(RESOURCE, "res/icon-path.png");
-	public static final ResourcePath ICON_REDO = new ResourcePath(RESOURCE, "res/icon-redo.png");
-	public static final ResourcePath ICON_SETTINGS = new ResourcePath(RESOURCE, "res/icon-settings.png");
-	public static final ResourcePath ICON_UNDO = new ResourcePath(RESOURCE, "res/icon-undo.png");
-	public static final ResourcePath ICON_HELP = new ResourcePath(RESOURCE, "res/icon-help.png");
-	public static final ResourcePath ICON_CLEAR = new ResourcePath(RESOURCE, "res/icon-clear.png");
+	public static final ResourcePath ICON_AREA = new ResourcePath(RESOURCE,
+			"res/icon-area.png");
+	public static final ResourcePath ICON_MOUSE = new ResourcePath(RESOURCE,
+			"res/icon-mouse.png");
+	public static final ResourcePath ICON_PATH = new ResourcePath(RESOURCE,
+			"res/icon-path.png");
+	public static final ResourcePath ICON_REDO = new ResourcePath(RESOURCE,
+			"res/icon-redo.png");
+	public static final ResourcePath ICON_SETTINGS = new ResourcePath(RESOURCE,
+			"res/icon-settings.png");
+	public static final ResourcePath ICON_UNDO = new ResourcePath(RESOURCE,
+			"res/icon-undo.png");
+	public static final ResourcePath ICON_HELP = new ResourcePath(RESOURCE,
+			"res/icon-help.png");
+	public static final ResourcePath ICON_CLEAR = new ResourcePath(RESOURCE,
+			"res/icon-clear.png");
 
 	public static final int INITIAL_DRAG_SENSITIVITY = 5;
 	public static final int MAX_TILE_RADIUS = 15;
