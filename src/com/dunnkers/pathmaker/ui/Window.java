@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,7 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSlider;
 import javax.swing.UIManager;
-import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 
 import com.dunnkers.pathmaker.Configuration;
@@ -37,10 +35,16 @@ import com.dunnkers.util.resource.ResourcePath;
  * 
  * @author Dunnkers
  */
-public class Window extends JFrame {
+/*
+ * TODO make all components independant of 
+ * jframe or japplet
+ * TODO make buttonbar independant in its own class
+ * TODO make DunkPathMaker class add a jframe for that
+ */
+public class Window extends Container {
 
 	private static final long serialVersionUID = 1L;
-	private final ButtonBar buttonBar;
+	/*private final ButtonBar buttonBar;*/
 	private final ToolBar toolBar;
 	private final JLabel statusLabel;
 
@@ -51,7 +55,7 @@ public class Window extends JFrame {
 	private CodeFormat codeFormat = CodeFormat.VINSERT;
 
 	public Window() {
-		buttonBar = new ButtonBar();
+		/*buttonBar = new ButtonBar();*/
 		{
 			statusLabel = new JLabel("Hover over the map to start", JLabel.LEFT);
 			final Border paddingBorder = BorderFactory.createEmptyBorder(3, 5,
@@ -73,26 +77,12 @@ public class Window extends JFrame {
 				return codeFormat;
 			}
 		};
-
-		this.setTitle(Configuration.WINDOW_TITLE);
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		final ArrayList<Image> icons = new ArrayList<Image>();
-		for (final ResourcePath ICON_MAP_X : Configuration.ICON_MAP) {
-			icons.add(ICON_MAP_X.getImage());
-		}
-		this.setIconImages(icons);
-		init();
 	}
-
-	public void init() {
-		final Container contentPane = this.getContentPane();
-		this.setJMenuBar(buttonBar);
+	
+	public void initContentPane(final Container contentPane) {
 		contentPane.add(toolBar, BorderLayout.PAGE_START);
 		contentPane.add(statusLabel, BorderLayout.SOUTH);
 		contentPane.add(worldMapView, BorderLayout.CENTER);
-		this.pack();
-		this.setSize(Configuration.WINDOW_SIZE);
-		this.setLocationRelativeTo(this.getOwner());
 	}
 
 	public class InteractiveWorldMapController extends WorldMapController {
@@ -164,6 +154,7 @@ public class Window extends JFrame {
 		}
 	}
 
+	// depencies; worldmapmodel and getWindowComp.
 	public class SettingsMenu extends JMenu {
 
 		private static final long serialVersionUID = 1L;
@@ -182,8 +173,7 @@ public class Window extends JFrame {
 				this.path.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(final ActionEvent e) {
-						worldMapModel.setMode(TileMode.PATH);
-						worldMapView.repaintLabel();
+						worldMapModel.setMode(TileMode.PATH/*, path*/);
 					}
 				});
 				this.path.setIcon(Configuration.ICON_PATH.getIcon());
@@ -194,8 +184,7 @@ public class Window extends JFrame {
 				this.area.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(final ActionEvent e) {
-						worldMapModel.setMode(TileMode.AREA);
-						worldMapView.repaintLabel();
+						worldMapModel.setMode(TileMode.AREA/*, area*/);
 					}
 				});
 				this.area.setIcon(Configuration.ICON_AREA.getIcon());
@@ -248,6 +237,7 @@ public class Window extends JFrame {
 		}
 	}
 
+	// depency; setCodeFormat
 	public class CodeFormatMenu extends JMenu {
 
 		private static final long serialVersionUID = 1L;
