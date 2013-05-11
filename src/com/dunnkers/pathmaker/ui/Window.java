@@ -173,7 +173,7 @@ public class Window extends Container {
 				this.path.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(final ActionEvent e) {
-						worldMapModel.setMode(TileMode.PATH/*, path*/);
+						worldMapModel.setMode(TileMode.PATH, path);
 					}
 				});
 				this.path.setIcon(Configuration.ICON_PATH.getIcon());
@@ -184,7 +184,7 @@ public class Window extends Container {
 				this.area.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(final ActionEvent e) {
-						worldMapModel.setMode(TileMode.AREA/*, area*/);
+						worldMapModel.setMode(TileMode.AREA, area);
 					}
 				});
 				this.area.setIcon(Configuration.ICON_AREA.getIcon());
