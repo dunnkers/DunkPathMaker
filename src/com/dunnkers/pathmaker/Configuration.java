@@ -25,8 +25,10 @@ public class Configuration {
 	// TODO ResourcePath: only store Resource once; it is now stored in all
 	// ResourcePaths
 	public static final Resource RESOURCE = new Resource(DunkPathMaker.class);
-	public static final ResourcePath IMAGE_MAP_PATH = new ResourcePath(RESOURCE,
+	public static final ResourcePath IMAGE_MAP_07 = new ResourcePath(RESOURCE,
 			"res/runescape-map-07.jpg");
+	public static final ResourcePath IMAGE_MAP_EOC = new ResourcePath(RESOURCE,
+			"res/runescape-map-eoc.png");
 	public static final ResourcePath ICON_MAP_16 = new ResourcePath(RESOURCE,
 			"res/icon-map-16x16.png");
 	public static final ResourcePath ICON_MAP_32 = new ResourcePath(RESOURCE,

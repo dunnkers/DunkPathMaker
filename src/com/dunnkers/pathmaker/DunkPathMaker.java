@@ -30,7 +30,8 @@ public class DunkPathMaker {
 				GoogleAnalyticsVersion.V_4_7_2);
 		final AnalyticsRequestData request = new AnalyticsRequestData();
 		request.setHostName("www.dunnkers.com");
-		request.setPageTitle("Application start");
+		request.setPageTitle("Application start - "
+				+ Configuration.APPLICATION_VERSION);
 		request.setPageURL("com.dunnkers.pathmaker.DunkPathMaker.java");
 		request.setReferrer("www.dunnkers.com", "com.dunnkers");
 		tracker.makeCustomRequest(request);

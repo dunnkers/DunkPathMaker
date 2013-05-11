@@ -36,7 +36,7 @@ public class WorldMapView extends JScrollPane {
 		new Thread() {
 			@Override
 			public void run() {
-				final ImageIcon imageIcon = Configuration.IMAGE_MAP_PATH.getIcon();
+				final ImageIcon imageIcon = Configuration.IMAGE_MAP_07.getIcon();
 				label.setText(null);
 				label.setIcon(imageIcon);
 			}
@@ -169,5 +169,9 @@ public class WorldMapView extends JScrollPane {
 
 	public JLabel getLabel() {
 		return label;
+	}
+	
+	public void setWorldMap() {
+		
 	}
 }
