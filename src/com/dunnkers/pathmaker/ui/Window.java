@@ -257,55 +257,7 @@ public class Window extends Container {
 			}
 		}
 	}
-
-	// depency; setCodeFormat
-	public class CodeFormatMenu extends JMenu {
-
-		private static final long serialVersionUID = 1L;
-		private final ButtonGroup buttonGroup;
-		private final ArrayList<JRadioButtonMenuItem> codeFormats;
-
-		public CodeFormatMenu(final String text) {
-			this.buttonGroup = new ButtonGroup();
-			codeFormats = new ArrayList<JRadioButtonMenuItem>();
-			for (final CodeFormat codeFormat : CodeFormat.values()) {
-				final JRadioButtonMenuItem item = new JRadioButtonMenuItem(codeFormat
-						.getName());
-				item.setSelected(false);
-				//item.setEnabled(codeFormat.isEnabled());
-				item.setActionCommand(codeFormat.getName());
-				/*item.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(final ActionEvent e) {
-						for (final CodeFormat codeFormat : CodeFormat.values()) {
-							if (codeFormat.getName().equals(
-									e.getActionCommand())) {
-								setCodeFormat(codeFormat);
-							}
-						}
-					}
-				});*/
-				this.buttonGroup.add(item);
-				codeFormats.add(item);
-			}
-			codeFormats.get(codeFormats.size() - 1).setSelected(true);
-			this.setText(text);
-			init();
-		}
-
-		public void init() {
-			for (final JRadioButtonMenuItem codeFormat : codeFormats) {
-				add(codeFormat);
-			}
-		}
-		
-		public void addItemActionListener(final ActionListener actionListener) {
-			for (final JRadioButtonMenuItem codeFormat : codeFormats) {
-				codeFormat.addActionListener(actionListener);
-			}
-		}
-	}
-
+	
 	/**
 	 * Used in the 'Drag Sensitivity' menu to call the parent component in a
 	 * OptionPane.
