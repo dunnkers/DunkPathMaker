@@ -1,7 +1,6 @@
 package com.dunnkers.pathmaker.ui.container;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -39,14 +38,7 @@ public class ContentPane extends Container {
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
 
-	public ContentPane() {
-		final ContentPaneModel contentPaneModel = new ContentPaneModel() {
-			@Override
-			public Component getComponent() {
-				return getInstance();
-			}
-		};
-		
+	public ContentPane(final ContentPaneModel contentPaneModel) {
 		worldMapModel = new WorldMapModel();
 		worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
 				new TileArrayChangeListener()));
@@ -123,9 +115,5 @@ public class ContentPane extends Container {
 			toolBar.getGenerate().setEnabled(worldMapModel.getTileArray().size() > 0);
 			worldMapView.repaintLabel();
 		}
-	}
-	
-	protected Component getInstance() {
-		return this;
 	}
 }
