@@ -13,6 +13,8 @@ import com.dunnkers.pathmaker.ui.WindowModel;
  */
 public class DunkPathMakerApplet extends JApplet {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void init() {
 		final Window window = new Window(new WindowModel());

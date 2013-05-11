@@ -17,7 +17,6 @@ import javax.swing.UIManager;
 
 import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
-import com.dunnkers.pathmaker.util.CodeFormat;
 
 public class ToolBar extends JToolBar {
 
