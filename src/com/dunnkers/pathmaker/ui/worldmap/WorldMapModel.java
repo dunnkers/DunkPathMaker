@@ -1,6 +1,8 @@
 package com.dunnkers.pathmaker.ui.worldmap;
 
 import java.awt.Point;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import com.dunnkers.pathmaker.Configuration;
@@ -17,6 +19,8 @@ public class WorldMapModel {
 	private ArrayList<Point> tileArray;
 	private int maxTileRadius;
 	private int dragSensitivity;
+	
+	private PropertyChangeListener modePropertyChangeListener;
 
 	public WorldMapModel() {
 		mode = TileMode.PATH;
@@ -31,6 +35,17 @@ public class WorldMapModel {
 	}
 
 	public void setMode(TileMode mode) {
+		this.setMode(mode, null);
+	}
+
+	public void setMode(TileMode mode, final Object source) {
+		if (modePropertyChangeListener != null) {
+			modePropertyChangeListener
+					.propertyChange(new PropertyChangeEvent(source,
+							"mode",
+							this.mode,
+							mode));
+		}
 		this.mode = mode;
 	}
 
@@ -64,5 +79,9 @@ public class WorldMapModel {
 
 	public void setDragSensitivity(int dragSensitivity) {
 		this.dragSensitivity = dragSensitivity;
+	}
+	
+	public void setModePropertyChangeListener(final PropertyChangeListener modePropertyChangeListener) {
+		this.modePropertyChangeListener = modePropertyChangeListener;
 	}
 }
