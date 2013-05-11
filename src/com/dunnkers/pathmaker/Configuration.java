@@ -18,8 +18,8 @@ public class Configuration {
 	public static final String APPLICATION_TITLE = "DunkPathMaker";
 	public static final String APPLICATION_ALIAS = "Create your paths with ease!";
 
-	public static final String WINDOW_TITLE = APPLICATION_TITLE + " v"
-			+ APPLICATION_VERSION + " - " + APPLICATION_ALIAS;
+	public static final String WINDOW_TITLE = APPLICATION_TITLE + " - "
+			+ APPLICATION_ALIAS;
 	public static final Dimension WINDOW_SIZE = new Dimension(750, 600);
 
 	// TODO ResourcePath: only store Resource once; it is now stored in all
