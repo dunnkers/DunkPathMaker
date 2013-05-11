@@ -1,9 +1,12 @@
 package com.dunnkers.pathmaker;
 
+import javax.swing.JFrame;
+
 import com.dmurph.tracking.AnalyticsConfigData;
 import com.dmurph.tracking.AnalyticsRequestData;
 import com.dmurph.tracking.JGoogleAnalyticsTracker;
 import com.dmurph.tracking.JGoogleAnalyticsTracker.GoogleAnalyticsVersion;
+import com.dunnkers.pathmaker.ui.Frame;
 import com.dunnkers.pathmaker.ui.Window;
 
 /**
@@ -19,8 +22,8 @@ public class DunkPathMaker {
 				track();
 			};
 		}.start();
-		final Window window = new Window();
-		window.setVisible(true);
+		final Frame frame = new Frame();
+		frame.setVisible(true);
 	}
 
 	private static void track() {
