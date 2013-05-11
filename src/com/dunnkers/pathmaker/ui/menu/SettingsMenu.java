@@ -1,4 +1,4 @@
-package com.dunnkers.pathmaker.ui;
+package com.dunnkers.pathmaker.ui.menu;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -13,6 +13,7 @@ import javax.swing.JSlider;
 import javax.swing.UIManager;
 
 import com.dunnkers.pathmaker.Configuration;
+import com.dunnkers.pathmaker.ui.WindowModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMode;

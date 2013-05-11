@@ -1,4 +1,4 @@
-package com.dunnkers.pathmaker.ui;
+package com.dunnkers.pathmaker.ui.menu;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.dunnkers.pathmaker.ui;
+package com.dunnkers.pathmaker.ui.menu;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JMenu;

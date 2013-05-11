@@ -5,6 +5,9 @@ import java.awt.Component;
 import javax.swing.JMenuBar;
 
 import com.dunnkers.pathmaker.Configuration;
+import com.dunnkers.pathmaker.ui.menu.HelpMenu;
+import com.dunnkers.pathmaker.ui.menu.MapMenu;
+import com.dunnkers.pathmaker.ui.menu.SettingsMenu;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 
 public class ButtonBar extends JMenuBar {
