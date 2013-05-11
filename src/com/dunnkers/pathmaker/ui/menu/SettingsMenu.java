@@ -61,18 +61,8 @@ public class SettingsMenu extends JMenu {
 		this.buttonGroup.add(path);
 		this.buttonGroup.add(area);
 
-		this.codeFormatMenu = new CodeFormatMenu("Code Format", contentPaneModel);
+		this.codeFormatMenu = new CodeFormatMenu("Code Format", contentPaneModel, worldMapModel);
 		this.codeFormatMenu.setIcon(UIManager.getIcon("FileView.fileIcon"));
-		this.codeFormatMenu.addItemActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent e) {
-				for (final CodeFormat codeFormat : CodeFormat.values()) {
-					if (codeFormat.getName().equals(e.getActionCommand())) {
-						contentPaneModel.setCodeFormat(codeFormat);
-					}
-				}
-			}
-		});
 		{
 			this.sensitivity = new JMenuItem("Drag sensitivity");
 			this.sensitivity.addActionListener(new ActionListener() {
@@ -112,5 +102,9 @@ public class SettingsMenu extends JMenu {
 		if (returnValue == JOptionPane.OK_OPTION) {
 			worldMapModel.setDragSensitivity(sensitivitySlider.getValue());
 		}
+	}
+
+	public CodeFormatMenu getCodeFormatMenu() {
+		return codeFormatMenu;
 	}
 }

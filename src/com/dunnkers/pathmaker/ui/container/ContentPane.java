@@ -37,8 +37,12 @@ public class ContentPane extends Container {
 	private final WorldMapModel worldMapModel;
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
+	
+	private final ContentPaneModel contentPaneModel;
 
 	public ContentPane(final ContentPaneModel contentPaneModel) {
+		this.contentPaneModel = contentPaneModel;
+		
 		worldMapModel = new WorldMapModel();
 		worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
 				new TileArrayChangeListener()));
@@ -47,9 +51,8 @@ public class ContentPane extends Container {
 				worldMapView);
 
 		{
-			menuBar = new MenuBar(contentPaneModel, worldMapModel);//fix acces to this, update in contentpanemodel
-			final MapMenu mapMenu = menuBar.getMapMenu();
-			mapMenu.addMapActionListener(new ActionListener() {
+			menuBar = new MenuBar(contentPaneModel, worldMapModel);
+			menuBar.getMapMenu().addMapActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					for (final WorldMap worldMap : WorldMap.values()) {
@@ -58,6 +61,7 @@ public class ContentPane extends Container {
 								return;
 							}
 							worldMapView.getLabel().setWorldMap(worldMap);
+							menuBar.getSettingsMenu().getCodeFormatMenu().construct();
 							break;
 						}
 					}
@@ -77,11 +81,11 @@ public class ContentPane extends Container {
 	public void initMenuBar(final JFrame frame) {
 		frame.setJMenuBar(menuBar);
 	}
-	
+
 	public void initMenuBar(final JApplet applet) {
 		applet.setJMenuBar(menuBar);
 	}
-	
+
 	public void initContentPane(final Container contentPane) {
 		contentPane.add(toolBar, BorderLayout.PAGE_START);
 		contentPane.add(statusLabel, BorderLayout.SOUTH);
@@ -104,15 +108,19 @@ public class ContentPane extends Container {
 			statusLabel.setText("Current tile: " + tile);
 		}
 	}
-	
+
 	public class TileArrayChangeListener implements ChangeListener {
 
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			toolBar.getUndo().setEnabled(worldMapController.getUndoManager().canUndo());
-			toolBar.getRedo().setEnabled(worldMapController.getUndoManager().canRedo());
-			toolBar.getClear().setEnabled(worldMapModel.getTileArray().size() > 0);
-			toolBar.getGenerate().setEnabled(worldMapModel.getTileArray().size() > 0);
+			toolBar.getUndo().setEnabled(
+					worldMapController.getUndoManager().canUndo());
+			toolBar.getRedo().setEnabled(
+					worldMapController.getUndoManager().canRedo());
+			toolBar.getClear().setEnabled(
+					worldMapModel.getTileArray().size() > 0);
+			toolBar.getGenerate().setEnabled(
+					worldMapModel.getTileArray().size() > 0 && contentPaneModel.getCodeFormat() != null);
 			worldMapView.repaintLabel();
 		}
 	}

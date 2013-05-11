@@ -2,22 +2,28 @@ package com.dunnkers.pathmaker.util;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 
  * @author Dunnkers
  */
 public enum CodeFormat {
-	OSBOT("OSBot", WorldMap.OLD_SCHOOL, false), 
-	VINSERT("vInsert", WorldMap.RECENT, true);
+	VINSERT("vInsert", true, WorldMap.OLD_SCHOOL),
+	OSBOT("OSBot", false, WorldMap.OLD_SCHOOL),
+	TRIBOT("TRiBot", false, WorldMap.OLD_SCHOOL, WorldMap.RECENT), 
+	RSBOT("RSBot", false, WorldMap.RECENT);
 	
 	private final String name;
-	private final WorldMap worldMap;
+	private final List<WorldMap> worldMaps;
 	private final boolean enabled;
+	
+	private static final String DEFAULT_TEXT = "Not supported yet!";
 
-	private CodeFormat(String name, final WorldMap worldMap, boolean enabled) {
+	private CodeFormat(String name, boolean enabled, final WorldMap... worldMaps) {
 		this.name = name;
-		this.worldMap = worldMap;
+		this.worldMaps = Arrays.asList(worldMaps);
 		this.enabled = enabled;
 	}
 
@@ -43,7 +49,10 @@ public enum CodeFormat {
 			output.append("\t);");
 			break;
 		case AREA:
-			output.append("Not supported yet!");
+			
+			break;
+		default:
+			output.append(DEFAULT_TEXT);
 			break;
 		}
 		return output.toString();
@@ -51,28 +60,23 @@ public enum CodeFormat {
 	
 	private String getPath() {
 		switch (this) {
-		case OSBOT:
-			
-			break;
 		case VINSERT:
 			return "\tprivate final Path path = new Path(\n";
+		default:
+			return DEFAULT_TEXT;
 		}
-		return "";
 	}
 	
 	private String getTile(final Point point) {
 		switch (this) {
-		case OSBOT:
-			
-			break;
 		case VINSERT:
 			return String.format("new Tile(%s, %s)", point.x, point.y);
+		default:
+			return DEFAULT_TEXT;
 		}
-		return "";
-		
 	}
 
-	public WorldMap getWorldMap() {
-		return worldMap;
+	public List<WorldMap> getWorldMaps() {
+		return worldMaps;
 	}
 }
