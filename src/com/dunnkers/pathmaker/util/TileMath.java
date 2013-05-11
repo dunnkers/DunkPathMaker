@@ -25,9 +25,9 @@ public class TileMath {
 			- MAP_TILES_VERTICAL_NORTH;
 
 	/** The amount of horizontal pixels in the world map image. */
-	private static double MAP_IMAGE_PIXELS_HORIZONTAL = 3713;
+	public static double MAP_IMAGE_PIXELS_HORIZONTAL = 3713;
 	/** The amount of vertical pixels in the world map image. */
-	private static double MAP_IMAGE_PIXELS_VERTICAL = 3329;
+	public static double MAP_IMAGE_PIXELS_VERTICAL = 3329;
 
 	/** The amount of horizontal world map pixels for one tile. */
 	public static double PIXELS_PER_TILE_HORIZONTAL = MAP_IMAGE_PIXELS_HORIZONTAL

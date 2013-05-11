@@ -2,6 +2,7 @@ package com.dunnkers.pathmaker.ui.worldmap;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -9,6 +10,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -34,19 +36,11 @@ public class WorldMapView extends JScrollPane {
 		this.worldMapModel = worldMapModel;
 
 		label = new WorldMapLabel("Loading world map...");
-		new Thread() {
-			@Override
-			public void run() {
-				setWorldMap(WorldMap.values()[0]);
-			}
-		}.start();
-
-		final JViewport viewport = new JViewport();
-		viewport.setView(label);
-		this.setViewport(viewport);
+		this.setViewportView(label);
+		label.setWorldMap(this.worldMapModel.getWorldMap());
 	}
 
-	private class WorldMapLabel extends JLabel {
+	public class WorldMapLabel extends JLabel {
 
 		private static final long serialVersionUID = 1L;
 		
@@ -145,6 +139,33 @@ public class WorldMapView extends JScrollPane {
 		public String getTextString() {
 			return textString;
 		}
+		
+		public void setWorldMap(final WorldMap worldMap) {
+			worldMapModel.setWorldMap(worldMap);
+			new Thread() {
+				@Override
+				public void run() {
+					if (worldMap.getImageIcon() == null) {
+						Point viewPosition = getViewport().getViewPosition();
+						setText(getTextString());
+						worldMap.setImageIcon(worldMap.getResourcePath().getIcon());
+						setText(null);
+
+						setIcon(worldMap.getImageIcon());
+						if ((viewPosition.x & viewPosition.y) == 0) {
+							viewPosition = new Point(
+									(int) (TileMath.MAP_IMAGE_PIXELS_HORIZONTAL / 2),
+									(int) (TileMath.MAP_IMAGE_PIXELS_VERTICAL / 2)
+									);
+						}
+						getViewport().setViewPosition(viewPosition);
+						return;
+					}else {
+						setIcon(worldMap.getImageIcon());
+					}
+				}
+			}.start();
+		}
 	}
 
 	public void addMouseAdapter(final MouseAdapter mouseAdapter) {
@@ -173,16 +194,7 @@ public class WorldMapView extends JScrollPane {
 		label.setCursor(cursor);
 	}
 
-	public JLabel getLabel() {
+	public WorldMapLabel getLabel() {
 		return label;
-	}
-	
-	public void setWorldMap(final WorldMap worldMap) {
-		label.setText(label.getTextString());
-		if (worldMap.getImageIcon() == null) {
-			worldMap.setImageIcon(worldMap.getResourcePath().getIcon());
-		}
-		label.setText(null);
-		label.setIcon(worldMap.getImageIcon());
 	}
 }

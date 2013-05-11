@@ -47,14 +47,18 @@ public class ContentPane extends Container {
 				worldMapView);
 
 		{
-			menuBar = new MenuBar(contentPaneModel, worldMapModel, this);
+			menuBar = new MenuBar(contentPaneModel, worldMapModel, this);//fix acces to this, update in contentpanemodel
 			final MapMenu mapMenu = menuBar.getMapMenu();
 			mapMenu.addMapActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					for (final WorldMap worldMap : WorldMap.values()) {
 						if (worldMap.getName().equals(e.getActionCommand())) {
-							worldMapView.setWorldMap(worldMap);
+							if (worldMap.equals(worldMapModel.getWorldMap())) {
+								return;
+							}
+							worldMapView.getLabel().setWorldMap(worldMap);
+							break;
 						}
 					}
 				}
@@ -67,7 +71,6 @@ public class ContentPane extends Container {
 			statusLabel.setBorder(BorderFactory.createCompoundBorder(
 					statusLabel.getBorder(), paddingBorder));
 		}
-
 		toolBar = new ToolBar("Tools", worldMapController, contentPaneModel, this);
 	}
 	

@@ -17,10 +17,10 @@ public class MenuBar extends JMenuBar {
 	private final MapMenu mapMenu;
 	private final HelpMenu help;
 
-	public MenuBar(final ContentPaneModel windowModel,
+	public MenuBar(final ContentPaneModel contentPaneModel,
 			final WorldMapModel worldMapModel, final Component parentComponent) {
 		this.settingsMenu = new SettingsMenu("Settings",
-				windowModel,
+				contentPaneModel,
 				worldMapModel,
 				parentComponent);
 		this.settingsMenu.setIcon(Configuration.ICON_SETTINGS.getIcon());

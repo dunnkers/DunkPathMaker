@@ -59,7 +59,7 @@ public class Configuration {
 	// default values
 	public static final int INITIAL_DRAG_SENSITIVITY = 5;
 	public static final int MAX_TILE_RADIUS = 15;
-	
+	//1750-10, 1280-40
 
 	private Configuration() {
 	}

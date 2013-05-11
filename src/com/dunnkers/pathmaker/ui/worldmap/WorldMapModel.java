@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.util.TileMode;
+import com.dunnkers.pathmaker.util.WorldMap;
 
 /**
  * 
@@ -19,6 +20,7 @@ public class WorldMapModel {
 	private ArrayList<Point> tileArray;
 	private int maxTileRadius;
 	private int dragSensitivity;
+	private WorldMap worldMap;
 	
 	private PropertyChangeListener modePropertyChangeListener;
 
@@ -28,6 +30,7 @@ public class WorldMapModel {
 		tileArray = new ArrayList<Point>();
 		maxTileRadius = Configuration.MAX_TILE_RADIUS;
 		dragSensitivity = Configuration.INITIAL_DRAG_SENSITIVITY;
+		worldMap = WorldMap.OLD_SCHOOL;
 	}
 
 	public TileMode getMode() {
@@ -83,5 +86,13 @@ public class WorldMapModel {
 	
 	public void setModePropertyChangeListener(final PropertyChangeListener modePropertyChangeListener) {
 		this.modePropertyChangeListener = modePropertyChangeListener;
+	}
+
+	public WorldMap getWorldMap() {
+		return worldMap;
+	}
+
+	public void setWorldMap(WorldMap worldMap) {
+		this.worldMap = worldMap;
 	}
 }
