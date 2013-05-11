@@ -3,6 +3,8 @@ package com.dunnkers.pathmaker.ui.worldmap;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import javax.swing.JViewport;
@@ -38,6 +40,7 @@ public class WorldMapController {
 		this.worldMapModel = worldMapModel;
 		this.worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
 				new TileArrayChangeListener()));
+		this.worldMapModel.setModePropertyChangeListener(new ModePropertyChangeListener());
 		this.worldMapView = worldMapView;
 
 		mouseAdapter = new MouseAdapter();
@@ -48,6 +51,14 @@ public class WorldMapController {
 
 		undoManager = new UndoManager();
 		undoManager.setLimit(1000);
+	}
+	
+	public class ModePropertyChangeListener implements PropertyChangeListener {
+
+		@Override
+		public void propertyChange(final PropertyChangeEvent e) {
+			worldMapView.repaintLabel();
+		}
 	}
 
 	public class TileArrayChangeListener implements ChangeListener {
