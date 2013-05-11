@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import com.dunnkers.pathmaker.Configuration;
-import com.dunnkers.pathmaker.ui.Window.ButtonBar;
 import com.dunnkers.util.resource.ResourcePath;
 
 /**

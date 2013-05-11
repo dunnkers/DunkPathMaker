@@ -37,12 +37,6 @@ import com.dunnkers.util.resource.ResourcePath;
  * 
  * @author Dunnkers
  */
-/*
- * TODO make all components independant of 
- * jframe or japplet
- * TODO make buttonbar independant in its own class
- * TODO make DunkPathMaker class add a jframe for that
- */
 public class Window extends Container {
 
 	private static final long serialVersionUID = 1L;
@@ -59,7 +53,7 @@ public class Window extends Container {
 		worldMapView = new WorldMapView(worldMapModel);
 		worldMapController = new InteractiveWorldMapController(worldMapModel,
 				worldMapView);
-		
+
 		buttonBar = new ButtonBar(windowModel, worldMapModel, this);
 		{
 			statusLabel = new JLabel("Hover over the map to start", JLabel.LEFT);
@@ -70,14 +64,7 @@ public class Window extends Container {
 		}
 
 		// TODO use mvc here.
-		toolBar = new ToolBar("Tools", worldMapController, this) {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public CodeFormat getCodeFormat() {
-				return windowModel.getCodeFormat();
-			}
-		};
+		toolBar = new ToolBar("Tools", worldMapController, windowModel, this);
 	}
 	
 	public void initContentPane(final Container contentPane) {

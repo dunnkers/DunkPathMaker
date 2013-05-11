@@ -19,7 +19,7 @@ import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
 import com.dunnkers.pathmaker.util.CodeFormat;
 
-public abstract class ToolBar extends JToolBar {
+public class ToolBar extends JToolBar {
 
 	private static final long serialVersionUID = 1L;
 	private final WorldMapController worldMapController;
@@ -32,9 +32,9 @@ public abstract class ToolBar extends JToolBar {
 	private final JButton generate;
 
 	public ToolBar(final String name,
-			final WorldMapController worldMapControllr,
-			final Component parentComponent) {
-		this.worldMapController = worldMapControllr;
+			final WorldMapController worldMapControllerParam,
+			final WindowModel windowModel, final Component parentComponent) {
+		this.worldMapController = worldMapControllerParam;
 		{
 			this.undo = new JButton("Undo");
 			this.undo.setEnabled(false);
@@ -83,7 +83,7 @@ public abstract class ToolBar extends JToolBar {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					final String code = worldMapController
-							.getCode(getCodeFormat());
+							.getCode(windowModel.getCodeFormat());
 					
 					final StringSelection selection = new StringSelection(code);
 					final Clipboard clipboard = Toolkit.getDefaultToolkit()
@@ -112,8 +112,6 @@ public abstract class ToolBar extends JToolBar {
 		add(Box.createHorizontalGlue());
 		add(generate);
 	}
-
-	public abstract CodeFormat getCodeFormat();
 
 	public JButton getClear() {
 		return clear;
