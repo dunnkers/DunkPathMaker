@@ -54,10 +54,13 @@ public class Window extends Container {
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
 
-	//private CodeFormat codeFormat = CodeFormat.VINSERT;
-
 	public Window(final WindowModel windowModel) {
-		buttonBar = new ButtonBar(windowModel);
+		worldMapModel = new WorldMapModel();
+		worldMapView = new WorldMapView(worldMapModel);
+		worldMapController = new InteractiveWorldMapController(worldMapModel,
+				worldMapView);
+		
+		buttonBar = new ButtonBar(windowModel, worldMapModel, this);
 		{
 			statusLabel = new JLabel("Hover over the map to start", JLabel.LEFT);
 			final Border paddingBorder = BorderFactory.createEmptyBorder(3, 5,
@@ -66,13 +69,8 @@ public class Window extends Container {
 					statusLabel.getBorder(), paddingBorder));
 		}
 
-		worldMapModel = new WorldMapModel();
-		worldMapView = new WorldMapView(worldMapModel);
-		worldMapController = new InteractiveWorldMapController(worldMapModel,
-				worldMapView);
-
 		// TODO use mvc here.
-		toolBar = new ToolBar("Tools", worldMapController, getWindowComponent()) {
+		toolBar = new ToolBar("Tools", worldMapController, this) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -144,12 +142,12 @@ public class Window extends Container {
 		private final MapMenu mapMenu;
 		private final HelpMenu help;
 
-		public ButtonBar(final WindowModel windowModel) {
-			this.settingsMenu = new SettingsMenu("Settings", windowModel);
+		public ButtonBar(final WindowModel windowModel, final WorldMapModel worldMapModel, final Component parentComponent) {
+			this.settingsMenu = new SettingsMenu("Settings", windowModel, worldMapModel, parentComponent);
 			this.settingsMenu.setIcon(Configuration.ICON_SETTINGS.getIcon());
 			this.mapMenu = new MapMenu("Map");
 			this.mapMenu.setIcon(Configuration.ICON_MAP_16.getIcon());
-			this.help = new HelpMenu("Help", getWindowComponent());
+			this.help = new HelpMenu("Help", parentComponent);
 			this.help.setIcon(Configuration.ICON_HELP.getIcon());
 			init();
 		}
@@ -163,108 +161,5 @@ public class Window extends Container {
 		public SettingsMenu getSettingsMenu() {
 			return settingsMenu;
 		}
-	}
-
-	// depencies; worldmapmodel and getWindowComp.
-	public class SettingsMenu extends JMenu {
-
-		private static final long serialVersionUID = 1L;
-		private final ButtonGroup buttonGroup;
-		private final JRadioButtonMenuItem path;
-		private final JRadioButtonMenuItem area;
-		private final CodeFormatMenu codeFormatMenu;
-		private final JMenuItem sensitivity;
-		private final JSlider sensitivitySlider;
-
-		public SettingsMenu(final String text, final WindowModel windowModel) {
-			this.buttonGroup = new ButtonGroup();
-			{
-				this.path = new JRadioButtonMenuItem("Path");
-				this.path.setSelected(true);
-				this.path.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(final ActionEvent e) {
-						worldMapModel.setMode(TileMode.PATH, path);
-					}
-				});
-				this.path.setIcon(Configuration.ICON_PATH.getIcon());
-			}
-			{
-				this.area = new JRadioButtonMenuItem("Area");
-				this.area.setEnabled(false);
-				this.area.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(final ActionEvent e) {
-						worldMapModel.setMode(TileMode.AREA, area);
-					}
-				});
-				this.area.setIcon(Configuration.ICON_AREA.getIcon());
-			}
-			this.buttonGroup.add(path);
-			this.buttonGroup.add(area);
-
-			this.codeFormatMenu = new CodeFormatMenu("Code Format");
-			this.codeFormatMenu.setIcon(UIManager.getIcon("FileView.fileIcon"));
-			this.codeFormatMenu.addItemActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(final ActionEvent e) {
-					for (final CodeFormat codeFormat : CodeFormat.values()) {
-						if (codeFormat.getName().equals(e.getActionCommand())) {
-							windowModel.setCodeFormat(codeFormat);
-						}
-					}
-				}
-			});
-			{
-				this.sensitivity = new JMenuItem("Drag sensitivity");
-				this.sensitivity.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(final ActionEvent e) {
-						showInputDialog();
-					}
-				});
-				this.sensitivity.setIcon(Configuration.ICON_MOUSE.getIcon());
-				this.sensitivitySlider = new JSlider(0, 30);
-				this.sensitivitySlider.setMinorTickSpacing(1);
-				this.sensitivitySlider.setMajorTickSpacing(5);
-				this.sensitivitySlider.setPaintLabels(true);
-				this.sensitivitySlider.setPaintTicks(true);
-			}
-			this.setText(text);
-			init();
-		}
-
-		public void init() {
-			add(path);
-			add(area);
-			addSeparator();
-			add(codeFormatMenu);
-			addSeparator();
-			add(sensitivity);
-		}
-
-		private void showInputDialog() {
-			sensitivitySlider.setValue(worldMapModel.getDragSensitivity());
-			final int returnValue = JOptionPane.showOptionDialog(
-					getWindowComponent(), new Object[] {
-							"Change the distance between tiles",
-							sensitivitySlider }, "Change drag sensitivity",
-					JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-					null, null, null);
-			if (returnValue == JOptionPane.OK_OPTION) {
-				worldMapModel.setDragSensitivity(sensitivitySlider.getValue());
-			}
-		}
-	}
-	
-	/**
-	 * Used in the 'Drag Sensitivity' menu to call the parent component in a
-	 * OptionPane.
-	 * 
-	 * @return This component, a Window.
-	 */
-	public Component getWindowComponent() {
-		return this;
 	}
 }
