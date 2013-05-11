@@ -21,7 +21,7 @@ public class Frame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public Frame() {
-		final Window window = new Window();
+		final Window window = new Window(new WindowModel());
 		final ButtonBar buttonBar = window.new ButtonBar();
 		this.setJMenuBar(buttonBar);
 		

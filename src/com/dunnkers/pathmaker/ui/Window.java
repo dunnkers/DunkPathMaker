@@ -52,9 +52,9 @@ public class Window extends Container {
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
 
-	private CodeFormat codeFormat = CodeFormat.VINSERT;
+	//private CodeFormat codeFormat = CodeFormat.VINSERT;
 
-	public Window() {
+	public Window(final WindowModel windowModel) {
 		/*buttonBar = new ButtonBar();*/
 		{
 			statusLabel = new JLabel("Hover over the map to start", JLabel.LEFT);
@@ -69,12 +69,13 @@ public class Window extends Container {
 		worldMapController = new InteractiveWorldMapController(worldMapModel,
 				worldMapView);
 
+		// TODO use mvc here.
 		toolBar = new ToolBar("Tools", worldMapController, getWindowComponent()) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public CodeFormat getCodeFormat() {
-				return codeFormat;
+				return windowModel.getCodeFormat();
 			}
 		};
 	}
@@ -253,7 +254,7 @@ public class Window extends Container {
 				item.setSelected(false);
 				item.setEnabled(codeFormat.isEnabled());
 				item.setActionCommand(codeFormat.getName());
-				item.addActionListener(new ActionListener() {
+				/*item.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(final ActionEvent e) {
 						for (final CodeFormat codeFormat : CodeFormat.values()) {
@@ -263,7 +264,7 @@ public class Window extends Container {
 							}
 						}
 					}
-				});
+				});*/
 				this.buttonGroup.add(item);
 				codeFormats.add(item);
 			}
@@ -277,6 +278,12 @@ public class Window extends Container {
 				add(codeFormat);
 			}
 		}
+		
+		public void addItemActionListener(final ActionListener actionListener) {
+			for (final JRadioButtonMenuItem codeFormat : codeFormats) {
+				codeFormat.addActionListener(actionListener);
+			}
+		}
 	}
 
 	/**
@@ -287,9 +294,5 @@ public class Window extends Container {
 	 */
 	public Component getWindowComponent() {
 		return this;
-	}
-
-	public void setCodeFormat(final CodeFormat codeFormat) {
-		this.codeFormat = codeFormat;
 	}
 }
