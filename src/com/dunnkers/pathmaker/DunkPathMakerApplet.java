@@ -11,6 +11,7 @@ import com.dunnkers.pathmaker.ui.WindowModel;
  * 
  * @author Dunnkers
  */
+// TODO optimize; generate button not yet working
 public class DunkPathMakerApplet extends JApplet {
 	
 	private static final long serialVersionUID = 1L;
