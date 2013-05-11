@@ -22,8 +22,7 @@ public class Frame extends JFrame {
 
 	public Frame() {
 		final Window window = new Window(new WindowModel());
-		final ButtonBar buttonBar = window.new ButtonBar();
-		this.setJMenuBar(buttonBar);
+		window.initJMenuBar(this);
 		
 		final Container contentPane = this.getContentPane();
 		window.initContentPane(contentPane);

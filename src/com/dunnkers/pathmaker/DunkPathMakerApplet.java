@@ -17,8 +17,7 @@ public class DunkPathMakerApplet extends JApplet {
 	@Override
 	public void init() {
 		final Window window = new Window(new WindowModel());
-		final ButtonBar buttonBar = window.new ButtonBar();
-		this.setJMenuBar(buttonBar);
+		window.initJMenuBar(this);
 		final Container contentPane = this.getContentPane();
 		window.initContentPane(contentPane);
 	}

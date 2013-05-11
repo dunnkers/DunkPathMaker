@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.JApplet;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -44,7 +46,7 @@ import com.dunnkers.util.resource.ResourcePath;
 public class Window extends Container {
 
 	private static final long serialVersionUID = 1L;
-	/*private final ButtonBar buttonBar;*/
+	private final ButtonBar buttonBar;
 	private final ToolBar toolBar;
 	private final JLabel statusLabel;
 
@@ -55,7 +57,7 @@ public class Window extends Container {
 	//private CodeFormat codeFormat = CodeFormat.VINSERT;
 
 	public Window(final WindowModel windowModel) {
-		/*buttonBar = new ButtonBar();*/
+		buttonBar = new ButtonBar(windowModel);
 		{
 			statusLabel = new JLabel("Hover over the map to start", JLabel.LEFT);
 			final Border paddingBorder = BorderFactory.createEmptyBorder(3, 5,
@@ -84,6 +86,14 @@ public class Window extends Container {
 		contentPane.add(toolBar, BorderLayout.PAGE_START);
 		contentPane.add(statusLabel, BorderLayout.SOUTH);
 		contentPane.add(worldMapView, BorderLayout.CENTER);
+	}
+	
+	public void initJMenuBar(final JFrame frame) {
+		frame.setJMenuBar(buttonBar);
+	}
+	
+	public void initJMenuBar(final JApplet applet) {
+		applet.setJMenuBar(buttonBar);
 	}
 
 	public class InteractiveWorldMapController extends WorldMapController {
@@ -134,8 +144,8 @@ public class Window extends Container {
 		private final MapMenu mapMenu;
 		private final HelpMenu help;
 
-		public ButtonBar() {
-			this.settingsMenu = new SettingsMenu("Settings");
+		public ButtonBar(final WindowModel windowModel) {
+			this.settingsMenu = new SettingsMenu("Settings", windowModel);
 			this.settingsMenu.setIcon(Configuration.ICON_SETTINGS.getIcon());
 			this.mapMenu = new MapMenu("Map");
 			this.mapMenu.setIcon(Configuration.ICON_MAP_16.getIcon());
@@ -166,7 +176,7 @@ public class Window extends Container {
 		private final JMenuItem sensitivity;
 		private final JSlider sensitivitySlider;
 
-		public SettingsMenu(final String text) {
+		public SettingsMenu(final String text, final WindowModel windowModel) {
 			this.buttonGroup = new ButtonGroup();
 			{
 				this.path = new JRadioButtonMenuItem("Path");
@@ -195,6 +205,16 @@ public class Window extends Container {
 
 			this.codeFormatMenu = new CodeFormatMenu("Code Format");
 			this.codeFormatMenu.setIcon(UIManager.getIcon("FileView.fileIcon"));
+			this.codeFormatMenu.addItemActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(final ActionEvent e) {
+					for (final CodeFormat codeFormat : CodeFormat.values()) {
+						if (codeFormat.getName().equals(e.getActionCommand())) {
+							windowModel.setCodeFormat(codeFormat);
+						}
+					}
+				}
+			});
 			{
 				this.sensitivity = new JMenuItem("Drag sensitivity");
 				this.sensitivity.addActionListener(new ActionListener() {
@@ -252,7 +272,7 @@ public class Window extends Container {
 				final JRadioButtonMenuItem item = new JRadioButtonMenuItem(codeFormat
 						.getName());
 				item.setSelected(false);
-				item.setEnabled(codeFormat.isEnabled());
+				//item.setEnabled(codeFormat.isEnabled());
 				item.setActionCommand(codeFormat.getName());
 				/*item.addActionListener(new ActionListener() {
 					@Override
