@@ -10,11 +10,14 @@ import javax.swing.JApplet;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapView;
 import com.dunnkers.pathmaker.util.TileMath;
+import com.dunnkers.util.ListenedArrayList;
 
 /**
  * 
@@ -33,6 +36,8 @@ public class ContentPane extends Container {
 
 	public ContentPane(final ContentPaneModel contentPaneModel) {
 		worldMapModel = new WorldMapModel();
+		worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
+				new TileArrayChangeListener()));
 		worldMapView = new WorldMapView(worldMapModel);
 		worldMapController = new InteractiveWorldMapController(worldMapModel,
 				worldMapView);
@@ -79,29 +84,17 @@ public class ContentPane extends Container {
 					tilePoint.y);
 			statusLabel.setText("Current tile: " + tile);
 		}
+	}
+	
+	public class TileArrayChangeListener implements ChangeListener {
 
 		@Override
-		public void setClear(boolean enabled) {
-			super.setClear(enabled);
-			toolBar.getClear().setEnabled(enabled);
-		}
-
-		@Override
-		public void setRedo(boolean enabled) {
-			super.setRedo(enabled);
-			toolBar.getRedo().setEnabled(enabled);
-		}
-
-		@Override
-		public void setUndo(boolean enabled) {
-			super.setUndo(enabled);
-			toolBar.getUndo().setEnabled(enabled);
-		}
-
-		@Override
-		public void setGenerate(boolean enabled) {
-			super.setGenerate(enabled);
-			toolBar.getGenerate().setEnabled(enabled);
+		public void stateChanged(ChangeEvent e) {
+			toolBar.getUndo().setEnabled(worldMapController.getUndoManager().canUndo());
+			toolBar.getRedo().setEnabled(worldMapController.getUndoManager().canRedo());
+			toolBar.getClear().setEnabled(worldMapModel.getTileArray().size() > 0);
+			toolBar.getGenerate().setEnabled(worldMapModel.getTileArray().size() > 0);
+			worldMapView.repaintLabel();
 		}
 	}
 }

@@ -37,9 +37,9 @@ public class WorldMapController {
 
 	public WorldMapController(final WorldMapModel worldMapModel,
 			final WorldMapView worldMapView) {
-		this.worldMapModel = worldMapModel;
+		this.worldMapModel = worldMapModel;/*
 		this.worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
-				new TileArrayChangeListener()));
+				new TileArrayChangeListener()));*/
 		this.worldMapModel.setModePropertyChangeListener(new ModePropertyChangeListener());
 		this.worldMapView = worldMapView;
 
@@ -61,7 +61,7 @@ public class WorldMapController {
 		}
 	}
 
-	public class TileArrayChangeListener implements ChangeListener {
+	/*public class TileArrayChangeListener implements ChangeListener {
 
 		@Override
 		public void stateChanged(ChangeEvent e) {
@@ -71,7 +71,7 @@ public class WorldMapController {
 			setGenerate(worldMapModel.getTileArray().size() > 0);
 			worldMapView.repaintLabel();
 		}
-	}
+	}*/
 
 	public class MouseAdapter extends java.awt.event.MouseAdapter {
 
@@ -266,16 +266,8 @@ public class WorldMapController {
 
 	public void onMouseMove(MouseEvent e) {
 	}
-
-	public void setUndo(boolean enabled) {
-	}
-
-	public void setRedo(boolean enabled) {
-	}
-
-	public void setClear(boolean enabled) {
-	}
 	
-	public void setGenerate(boolean enabled) {
+	public UndoManager getUndoManager() {
+		return undoManager;
 	}
 }
