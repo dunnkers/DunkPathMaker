@@ -1,4 +1,4 @@
-package com.dunnkers.pathmaker.ui;
+package com.dunnkers.pathmaker.ui.container;
 
 import java.awt.Component;
 
@@ -17,7 +17,7 @@ public class ButtonBar extends JMenuBar {
 	private final MapMenu mapMenu;
 	private final HelpMenu help;
 
-	public ButtonBar(final WindowModel windowModel,
+	public ButtonBar(final ContentPaneModel windowModel,
 			final WorldMapModel worldMapModel, final Component parentComponent) {
 		this.settingsMenu = new SettingsMenu("Settings",
 				windowModel,

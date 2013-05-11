@@ -1,4 +1,4 @@
-package com.dunnkers.pathmaker.ui;
+package com.dunnkers.pathmaker.ui.container;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -20,7 +20,7 @@ import com.dunnkers.pathmaker.util.TileMath;
  * 
  * @author Dunnkers
  */
-public class Window extends Container {
+public class ContentPane extends Container {
 
 	private static final long serialVersionUID = 1L;
 	private final ButtonBar buttonBar;
@@ -31,7 +31,7 @@ public class Window extends Container {
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
 
-	public Window(final WindowModel windowModel) {
+	public ContentPane(final ContentPaneModel windowModel) {
 		worldMapModel = new WorldMapModel();
 		worldMapView = new WorldMapView(worldMapModel);
 		worldMapController = new InteractiveWorldMapController(worldMapModel,

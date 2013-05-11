@@ -1,12 +1,12 @@
-package com.dunnkers.pathmaker.ui;
+package com.dunnkers.pathmaker.ui.container;
 
 import com.dunnkers.pathmaker.util.CodeFormat;
 
-public class WindowModel {
+public class ContentPaneModel {
 
 	private CodeFormat codeFormat;
 
-	public WindowModel() {
+	public ContentPaneModel() {
 		this.codeFormat = CodeFormat.VINSERT;
 	}
 

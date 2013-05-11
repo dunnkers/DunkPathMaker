@@ -1,4 +1,4 @@
-package com.dunnkers.pathmaker.ui;
+package com.dunnkers.pathmaker.ui.container;
 
 import java.awt.Component;
 import java.awt.Toolkit;
@@ -32,7 +32,7 @@ public class ToolBar extends JToolBar {
 
 	public ToolBar(final String name,
 			final WorldMapController worldMapControllerParam,
-			final WindowModel windowModel, final Component parentComponent) {
+			final ContentPaneModel windowModel, final Component parentComponent) {
 		this.worldMapController = worldMapControllerParam;
 		{
 			this.undo = new JButton("Undo");

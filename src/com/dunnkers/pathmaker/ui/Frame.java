@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import com.dunnkers.pathmaker.Configuration;
+import com.dunnkers.pathmaker.ui.container.ContentPane;
+import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 import com.dunnkers.util.resource.ResourcePath;
 
 /**
@@ -20,7 +22,7 @@ public class Frame extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public Frame() {
-		final Window window = new Window(new WindowModel());
+		final ContentPane window = new ContentPane(new ContentPaneModel());
 		window.initJMenuBar(this);
 		
 		final Container contentPane = this.getContentPane();

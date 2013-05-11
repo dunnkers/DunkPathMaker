@@ -13,7 +13,7 @@ import javax.swing.JSlider;
 import javax.swing.UIManager;
 
 import com.dunnkers.pathmaker.Configuration;
-import com.dunnkers.pathmaker.ui.WindowModel;
+import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMode;
@@ -28,11 +28,11 @@ public class SettingsMenu extends JMenu {
 	private final JMenuItem sensitivity;
 	private final JSlider sensitivitySlider;
 
-	private final WindowModel windowModel;
+	private final ContentPaneModel windowModel;
 	private final WorldMapModel worldMapModel;
 	private final Component parentComponent;
 
-	public SettingsMenu(final String text, final WindowModel windowModelParam,
+	public SettingsMenu(final String text, final ContentPaneModel windowModelParam,
 			final WorldMapModel worldMapModelParam,
 			final Component parentComponentParam) {
 		this.setText(text);
