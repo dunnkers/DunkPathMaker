@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.util.TileMath;
+import com.dunnkers.pathmaker.util.WorldMap;
 import com.dunnkers.util.Graphic;
 
 /**
@@ -36,9 +37,7 @@ public class WorldMapView extends JScrollPane {
 		new Thread() {
 			@Override
 			public void run() {
-				final ImageIcon imageIcon = Configuration.IMAGE_MAP_07.getIcon();
-				label.setText(null);
-				label.setIcon(imageIcon);
+				setWorldMap(WorldMap.values()[0]);
 			}
 		}.start();
 
@@ -50,9 +49,12 @@ public class WorldMapView extends JScrollPane {
 	private class WorldMapLabel extends JLabel {
 
 		private static final long serialVersionUID = 1L;
+		
+		private final String textString;
 
-		public WorldMapLabel(String text) {
+		public WorldMapLabel(final String text) {
 			super(text, SwingConstants.CENTER);
+			this.textString = text;
 		}
 
 		@Override
@@ -139,6 +141,10 @@ public class WorldMapView extends JScrollPane {
 					worldMapModel.getMouseLocation().x,
 					worldMapModel.getMouseLocation().y);
 		}
+
+		public String getTextString() {
+			return textString;
+		}
 	}
 
 	public void addMouseAdapter(final MouseAdapter mouseAdapter) {
@@ -171,7 +177,12 @@ public class WorldMapView extends JScrollPane {
 		return label;
 	}
 	
-	public void setWorldMap() {
-		
+	public void setWorldMap(final WorldMap worldMap) {
+		label.setText(label.getTextString());
+		if (worldMap.getImageIcon() == null) {
+			worldMap.setImageIcon(worldMap.getResourcePath().getIcon());
+		}
+		label.setText(null);
+		label.setIcon(worldMap.getImageIcon());
 	}
 }

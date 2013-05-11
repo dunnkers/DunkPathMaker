@@ -40,4 +40,8 @@ public class MenuBar extends JMenuBar {
 	public SettingsMenu getSettingsMenu() {
 		return settingsMenu;
 	}
+
+	public MapMenu getMapMenu() {
+		return mapMenu;
+	}
 }

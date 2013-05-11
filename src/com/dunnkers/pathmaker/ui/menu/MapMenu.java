@@ -1,5 +1,6 @@
 package com.dunnkers.pathmaker.ui.menu;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -21,6 +22,7 @@ public class MapMenu extends JMenu {
 		for (final WorldMap worldMap : WorldMap.values()) {
 			final JRadioButtonMenuItem map = new JRadioButtonMenuItem(worldMap.getName());
 			map.setEnabled(map.isEnabled());
+			map.setActionCommand(worldMap.getName());
 			this.buttonGroup.add(map);
 			maps.add(map);
 		}
@@ -31,6 +33,12 @@ public class MapMenu extends JMenu {
 	public void init() {
 		for (final JRadioButtonMenuItem map : maps) {
 			add(map);
+		}
+	}
+	
+	public void addMapActionListener(final ActionListener actionListener) {
+		for (final JRadioButtonMenuItem map : maps) {
+			map.addActionListener(actionListener);
 		}
 	}
 }

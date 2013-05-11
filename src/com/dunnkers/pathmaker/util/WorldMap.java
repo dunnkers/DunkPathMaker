@@ -1,5 +1,7 @@
 package com.dunnkers.pathmaker.util;
 
+import javax.swing.ImageIcon;
+
 import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.util.resource.ResourcePath;
 
@@ -15,6 +17,8 @@ public enum WorldMap {
 	private final String name;
 	private final ResourcePath resourcePath;
 	private final boolean enabled;
+	
+	private ImageIcon imageIcon;
 	
 	private WorldMap(final String name, final ResourcePath resourcePath, final boolean enabled) {
 		this.name = name;
@@ -32,5 +36,13 @@ public enum WorldMap {
 
 	public boolean isEnabled() {
 		return enabled;
+	}
+
+	public ImageIcon getImageIcon() {
+		return imageIcon;
+	}
+
+	public void setImageIcon(final ImageIcon imageIcon) {
+		this.imageIcon = imageIcon;
 	}
 }

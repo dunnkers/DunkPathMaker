@@ -8,14 +8,16 @@ import java.util.ArrayList;
  * @author Dunnkers
  */
 public enum CodeFormat {
-	OSBOT("OSBot", false), 
-	VINSERT("vInsert", true);
+	OSBOT("OSBot", WorldMap.OLD_SCHOOL, false), 
+	VINSERT("vInsert", WorldMap.RECENT, true);
 	
 	private final String name;
+	private final WorldMap worldMap;
 	private final boolean enabled;
 
-	private CodeFormat(String name, boolean enabled) {
+	private CodeFormat(String name, final WorldMap worldMap, boolean enabled) {
 		this.name = name;
+		this.worldMap = worldMap;
 		this.enabled = enabled;
 	}
 
@@ -68,5 +70,9 @@ public enum CodeFormat {
 		}
 		return "";
 		
+	}
+
+	public WorldMap getWorldMap() {
+		return worldMap;
 	}
 }
