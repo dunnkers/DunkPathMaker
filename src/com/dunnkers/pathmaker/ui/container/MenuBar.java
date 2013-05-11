@@ -1,7 +1,5 @@
 package com.dunnkers.pathmaker.ui.container;
 
-import java.awt.Component;
-
 import javax.swing.JMenuBar;
 
 import com.dunnkers.pathmaker.Configuration;

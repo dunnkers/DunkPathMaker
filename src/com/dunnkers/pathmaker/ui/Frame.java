@@ -9,7 +9,6 @@ import javax.swing.WindowConstants;
 
 import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.ui.container.ContentPane;
-import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 import com.dunnkers.util.resource.ResourcePath;
 
 /**

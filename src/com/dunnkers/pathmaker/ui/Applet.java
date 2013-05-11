@@ -5,7 +5,6 @@ import java.awt.Container;
 import javax.swing.JApplet;
 
 import com.dunnkers.pathmaker.ui.container.ContentPane;
-import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 
 
 /**

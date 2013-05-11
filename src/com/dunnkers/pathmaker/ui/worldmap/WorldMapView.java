@@ -2,7 +2,6 @@ package com.dunnkers.pathmaker.ui.worldmap;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -10,14 +9,10 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 
-import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.util.TileMath;
 import com.dunnkers.pathmaker.util.WorldMap;
 import com.dunnkers.util.Graphic;

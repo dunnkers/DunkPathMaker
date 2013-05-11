@@ -1,6 +1,5 @@
 package com.dunnkers.pathmaker.ui.container;
 
-import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
