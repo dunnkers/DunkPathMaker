@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
@@ -19,7 +17,6 @@ import javax.swing.undo.UndoManager;
 
 import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMath;
-import com.dunnkers.util.ListenedArrayList;
 
 /**
  * 
@@ -37,9 +34,7 @@ public class WorldMapController {
 
 	public WorldMapController(final WorldMapModel worldMapModel,
 			final WorldMapView worldMapView) {
-		this.worldMapModel = worldMapModel;/*
-		this.worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
-				new TileArrayChangeListener()));*/
+		this.worldMapModel = worldMapModel;
 		this.worldMapModel.setModePropertyChangeListener(new ModePropertyChangeListener());
 		this.worldMapView = worldMapView;
 
@@ -60,18 +55,6 @@ public class WorldMapController {
 			worldMapView.repaintLabel();
 		}
 	}
-
-	/*public class TileArrayChangeListener implements ChangeListener {
-
-		@Override
-		public void stateChanged(ChangeEvent e) {
-			setUndo(undoManager.canUndo());
-			setRedo(undoManager.canRedo());
-			setClear(worldMapModel.getTileArray().size() > 0);
-			setGenerate(worldMapModel.getTileArray().size() > 0);
-			worldMapView.repaintLabel();
-		}
-	}*/
 
 	public class MouseAdapter extends java.awt.event.MouseAdapter {
 
@@ -158,9 +141,6 @@ public class WorldMapController {
 
 	public class UndoableTileEdit extends AbstractUndoableEdit {
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		private final Point point;
 
@@ -189,9 +169,6 @@ public class WorldMapController {
 
 	public class UndoableClearEdit extends AbstractUndoableEdit {
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		private final ArrayList<Point> points;
 

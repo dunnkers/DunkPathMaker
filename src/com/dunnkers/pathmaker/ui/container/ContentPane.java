@@ -51,14 +51,7 @@ public class ContentPane extends Container {
 					statusLabel.getBorder(), paddingBorder));
 		}
 
-		// TODO use mvc here.
 		toolBar = new ToolBar("Tools", worldMapController, contentPaneModel, this);
-	}
-	
-	public void initContentPane(final Container contentPane) {
-		contentPane.add(toolBar, BorderLayout.PAGE_START);
-		contentPane.add(statusLabel, BorderLayout.SOUTH);
-		contentPane.add(worldMapView, BorderLayout.CENTER);
 	}
 	
 	public void initMenuBar(final JFrame frame) {
@@ -67,6 +60,12 @@ public class ContentPane extends Container {
 	
 	public void initMenuBar(final JApplet applet) {
 		applet.setJMenuBar(menuBar);
+	}
+	
+	public void initContentPane(final Container contentPane) {
+		contentPane.add(toolBar, BorderLayout.PAGE_START);
+		contentPane.add(statusLabel, BorderLayout.SOUTH);
+		contentPane.add(worldMapView, BorderLayout.CENTER);
 	}
 
 	public class InteractiveWorldMapController extends WorldMapController {
