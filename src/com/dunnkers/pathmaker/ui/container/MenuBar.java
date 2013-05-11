@@ -10,14 +10,14 @@ import com.dunnkers.pathmaker.ui.menu.MapMenu;
 import com.dunnkers.pathmaker.ui.menu.SettingsMenu;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 
-public class ButtonBar extends JMenuBar {
+public class MenuBar extends JMenuBar {
 
 	private static final long serialVersionUID = 1L;
 	private final SettingsMenu settingsMenu;
 	private final MapMenu mapMenu;
 	private final HelpMenu help;
 
-	public ButtonBar(final ContentPaneModel windowModel,
+	public MenuBar(final ContentPaneModel windowModel,
 			final WorldMapModel worldMapModel, final Component parentComponent) {
 		this.settingsMenu = new SettingsMenu("Settings",
 				windowModel,

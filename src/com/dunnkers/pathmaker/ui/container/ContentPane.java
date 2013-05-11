@@ -23,7 +23,7 @@ import com.dunnkers.pathmaker.util.TileMath;
 public class ContentPane extends Container {
 
 	private static final long serialVersionUID = 1L;
-	private final ButtonBar buttonBar;
+	private final MenuBar menuBar;
 	private final ToolBar toolBar;
 	private final JLabel statusLabel;
 
@@ -31,13 +31,13 @@ public class ContentPane extends Container {
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
 
-	public ContentPane(final ContentPaneModel windowModel) {
+	public ContentPane(final ContentPaneModel contentPaneModel) {
 		worldMapModel = new WorldMapModel();
 		worldMapView = new WorldMapView(worldMapModel);
 		worldMapController = new InteractiveWorldMapController(worldMapModel,
 				worldMapView);
 
-		buttonBar = new ButtonBar(windowModel, worldMapModel, this);
+		menuBar = new MenuBar(contentPaneModel, worldMapModel, this);
 		{
 			statusLabel = new JLabel("Hover over the map to start", JLabel.LEFT);
 			final Border paddingBorder = BorderFactory.createEmptyBorder(3, 5,
@@ -47,7 +47,7 @@ public class ContentPane extends Container {
 		}
 
 		// TODO use mvc here.
-		toolBar = new ToolBar("Tools", worldMapController, windowModel, this);
+		toolBar = new ToolBar("Tools", worldMapController, contentPaneModel, this);
 	}
 	
 	public void initContentPane(final Container contentPane) {
@@ -56,12 +56,12 @@ public class ContentPane extends Container {
 		contentPane.add(worldMapView, BorderLayout.CENTER);
 	}
 	
-	public void initJMenuBar(final JFrame frame) {
-		frame.setJMenuBar(buttonBar);
+	public void initMenuBar(final JFrame frame) {
+		frame.setJMenuBar(menuBar);
 	}
 	
-	public void initJMenuBar(final JApplet applet) {
-		applet.setJMenuBar(buttonBar);
+	public void initMenuBar(final JApplet applet) {
+		applet.setJMenuBar(menuBar);
 	}
 
 	public class InteractiveWorldMapController extends WorldMapController {

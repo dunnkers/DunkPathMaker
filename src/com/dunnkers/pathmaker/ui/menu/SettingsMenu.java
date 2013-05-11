@@ -28,15 +28,15 @@ public class SettingsMenu extends JMenu {
 	private final JMenuItem sensitivity;
 	private final JSlider sensitivitySlider;
 
-	private final ContentPaneModel windowModel;
+	private final ContentPaneModel contentPaneModel;
 	private final WorldMapModel worldMapModel;
 	private final Component parentComponent;
 
-	public SettingsMenu(final String text, final ContentPaneModel windowModelParam,
+	public SettingsMenu(final String text, final ContentPaneModel contentPaneModelParam,
 			final WorldMapModel worldMapModelParam,
 			final Component parentComponentParam) {
 		this.setText(text);
-		this.windowModel = windowModelParam;
+		this.contentPaneModel = contentPaneModelParam;
 		this.worldMapModel = worldMapModelParam;
 		this.parentComponent = parentComponentParam;
 		this.buttonGroup = new ButtonGroup();
@@ -65,14 +65,14 @@ public class SettingsMenu extends JMenu {
 		this.buttonGroup.add(path);
 		this.buttonGroup.add(area);
 
-		this.codeFormatMenu = new CodeFormatMenu("Code Format");
+		this.codeFormatMenu = new CodeFormatMenu("Code Format", contentPaneModel);
 		this.codeFormatMenu.setIcon(UIManager.getIcon("FileView.fileIcon"));
 		this.codeFormatMenu.addItemActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(final ActionEvent e) {
 				for (final CodeFormat codeFormat : CodeFormat.values()) {
 					if (codeFormat.getName().equals(e.getActionCommand())) {
-						windowModel.setCodeFormat(codeFormat);
+						contentPaneModel.setCodeFormat(codeFormat);
 					}
 				}
 			}

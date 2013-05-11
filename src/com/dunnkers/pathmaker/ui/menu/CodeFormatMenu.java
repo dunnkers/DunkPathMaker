@@ -1,5 +1,6 @@
 package com.dunnkers.pathmaker.ui.menu;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
@@ -7,6 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 
+import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 import com.dunnkers.pathmaker.util.CodeFormat;
 
 public class CodeFormatMenu extends JMenu {
@@ -15,7 +17,7 @@ public class CodeFormatMenu extends JMenu {
 	private final ButtonGroup buttonGroup;
 	private final ArrayList<JRadioButtonMenuItem> codeFormats;
 
-	public CodeFormatMenu(final String text) {
+	public CodeFormatMenu(final String text, final ContentPaneModel contentPaneModel) {
 		this.buttonGroup = new ButtonGroup();
 		codeFormats = new ArrayList<JRadioButtonMenuItem>();
 		for (final CodeFormat codeFormat : CodeFormat.values()) {
@@ -24,6 +26,16 @@ public class CodeFormatMenu extends JMenu {
 			item.setSelected(false);
 			item.setEnabled(codeFormat.isEnabled());
 			item.setActionCommand(codeFormat.getName());
+			item.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(final ActionEvent e) {
+					for (final CodeFormat codeFormat : CodeFormat.values()) {
+						if (codeFormat.getName().equals(e.getActionCommand())) {
+							contentPaneModel.setCodeFormat(codeFormat);
+						}
+					}
+				}
+			});
 			this.buttonGroup.add(item);
 			codeFormats.add(item);
 		}
