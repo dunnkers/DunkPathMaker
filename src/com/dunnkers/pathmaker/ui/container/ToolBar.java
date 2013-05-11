@@ -32,7 +32,7 @@ public class ToolBar extends JToolBar {
 
 	public ToolBar(final String name,
 			final WorldMapController worldMapControllerParam,
-			final ContentPaneModel windowModel, final Component parentComponent) {
+			final ContentPaneModel contentPaneModel) {
 		this.worldMapController = worldMapControllerParam;
 		{
 			this.undo = new JButton("Undo");
@@ -82,7 +82,7 @@ public class ToolBar extends JToolBar {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					final String code = worldMapController
-							.getCode(windowModel.getCodeFormat());
+							.getCode(contentPaneModel.getCodeFormat());
 					
 					final StringSelection selection = new StringSelection(code);
 					final Clipboard clipboard = Toolkit.getDefaultToolkit()
@@ -94,7 +94,7 @@ public class ToolBar extends JToolBar {
 							"Code",
 							generateScrollPane,
 							"Copied to clipboard!" };
-					JOptionPane.showMessageDialog(parentComponent, message,
+					JOptionPane.showMessageDialog(contentPaneModel.getComponent(), message,
 							"Generated Code", JOptionPane.PLAIN_MESSAGE);
 				}
 			});

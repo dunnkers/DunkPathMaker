@@ -18,15 +18,14 @@ public class MenuBar extends JMenuBar {
 	private final HelpMenu help;
 
 	public MenuBar(final ContentPaneModel contentPaneModel,
-			final WorldMapModel worldMapModel, final Component parentComponent) {
+			final WorldMapModel worldMapModel) {
 		this.settingsMenu = new SettingsMenu("Settings",
 				contentPaneModel,
-				worldMapModel,
-				parentComponent);
+				worldMapModel);
 		this.settingsMenu.setIcon(Configuration.ICON_SETTINGS.getIcon());
 		this.mapMenu = new MapMenu("Map");
 		this.mapMenu.setIcon(Configuration.ICON_MAP_16.getIcon());
-		this.help = new HelpMenu("Help", parentComponent);
+		this.help = new HelpMenu("Help", contentPaneModel.getComponent());
 		this.help.setIcon(Configuration.ICON_HELP.getIcon());
 		init();
 	}

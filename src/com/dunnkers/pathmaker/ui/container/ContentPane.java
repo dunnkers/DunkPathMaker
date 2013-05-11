@@ -1,6 +1,7 @@
 package com.dunnkers.pathmaker.ui.container;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,14 @@ public class ContentPane extends Container {
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
 
-	public ContentPane(final ContentPaneModel contentPaneModel) {
+	public ContentPane() {
+		final ContentPaneModel contentPaneModel = new ContentPaneModel() {
+			@Override
+			public Component getComponent() {
+				return getInstance();
+			}
+		};
+		
 		worldMapModel = new WorldMapModel();
 		worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
 				new TileArrayChangeListener()));
@@ -47,7 +55,7 @@ public class ContentPane extends Container {
 				worldMapView);
 
 		{
-			menuBar = new MenuBar(contentPaneModel, worldMapModel, this);//fix acces to this, update in contentpanemodel
+			menuBar = new MenuBar(contentPaneModel, worldMapModel);//fix acces to this, update in contentpanemodel
 			final MapMenu mapMenu = menuBar.getMapMenu();
 			mapMenu.addMapActionListener(new ActionListener() {
 				@Override
@@ -71,9 +79,9 @@ public class ContentPane extends Container {
 			statusLabel.setBorder(BorderFactory.createCompoundBorder(
 					statusLabel.getBorder(), paddingBorder));
 		}
-		toolBar = new ToolBar("Tools", worldMapController, contentPaneModel, this);
+		toolBar = new ToolBar("Tools", worldMapController, contentPaneModel);
 	}
-	
+
 	public void initMenuBar(final JFrame frame) {
 		frame.setJMenuBar(menuBar);
 	}
@@ -115,5 +123,9 @@ public class ContentPane extends Container {
 			toolBar.getGenerate().setEnabled(worldMapModel.getTileArray().size() > 0);
 			worldMapView.repaintLabel();
 		}
+	}
+	
+	protected Component getInstance() {
+		return this;
 	}
 }

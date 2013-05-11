@@ -30,15 +30,12 @@ public class SettingsMenu extends JMenu {
 
 	private final ContentPaneModel contentPaneModel;
 	private final WorldMapModel worldMapModel;
-	private final Component parentComponent;
 
 	public SettingsMenu(final String text, final ContentPaneModel contentPaneModelParam,
-			final WorldMapModel worldMapModelParam,
-			final Component parentComponentParam) {
+			final WorldMapModel worldMapModelParam) {
 		this.setText(text);
 		this.contentPaneModel = contentPaneModelParam;
 		this.worldMapModel = worldMapModelParam;
-		this.parentComponent = parentComponentParam;
 		this.buttonGroup = new ButtonGroup();
 		{
 			this.path = new JRadioButtonMenuItem("Path");
@@ -107,7 +104,7 @@ public class SettingsMenu extends JMenu {
 
 	private void showInputDialog() {
 		sensitivitySlider.setValue(worldMapModel.getDragSensitivity());
-		final int returnValue = JOptionPane.showOptionDialog(parentComponent,
+		final int returnValue = JOptionPane.showOptionDialog(contentPaneModel.getComponent(),
 				new Object[] {
 						"Change the distance between tiles",
 						sensitivitySlider }, "Change drag sensitivity",

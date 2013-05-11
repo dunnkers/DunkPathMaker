@@ -19,7 +19,7 @@ public class Applet extends JApplet {
 
 	@Override
 	public void init() {
-		final ContentPane window = new ContentPane(new ContentPaneModel());
+		final ContentPane window = new ContentPane();
 		window.initMenuBar(this);
 		final Container contentPane = this.getContentPane();
 		window.initContentPane(contentPane);

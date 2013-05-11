@@ -153,10 +153,8 @@ public class WorldMapView extends JScrollPane {
 
 						setIcon(worldMap.getImageIcon());
 						if ((viewPosition.x & viewPosition.y) == 0) {
-							viewPosition = new Point(
-									(int) (TileMath.MAP_IMAGE_PIXELS_HORIZONTAL / 2),
-									(int) (TileMath.MAP_IMAGE_PIXELS_VERTICAL / 2)
-									);
+							viewPosition = new Point((int) (TileMath.MAP_IMAGE_PIXELS_HORIZONTAL / 2),
+									(int) (TileMath.MAP_IMAGE_PIXELS_VERTICAL / 2));
 						}
 						getViewport().setViewPosition(viewPosition);
 						return;
