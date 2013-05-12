@@ -57,7 +57,6 @@ public class WorldMapView extends JScrollPane {
 			}
 			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 					RenderingHints.VALUE_ANTIALIAS_ON);
-			
 			worldMapModel.getMode().paint(g, worldMapModel, contentPaneModel);
 		}
 

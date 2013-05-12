@@ -12,46 +12,42 @@ import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 
 public enum TileMode {
 	PATH, AREA;
+	
+	private static final int DOT_RADIUS = 4;
 
 	public void paint(final Graphics g, final WorldMapModel worldMapModel,
 			final ContentPaneModel contentPaneModel) {
-		final int dotRadius = 4;
 		boolean drawLineToMouse = true;
+		final int size = worldMapModel.getTileArray().size();
 		switch (this) {
 		case PATH:
-			Point previous = null;
-			for (int i = 0; i < worldMapModel.getTileArray().size(); i++) {
+			for (int i = 0; i < size; i++) {
 				Point current = TileMath.getPoint(worldMapModel.getTileArray()
 						.get(i));
-				if (current == null) {
-					continue;
-				}
 				g.setColor(Graphic.setAlpha(Color.WHITE, 150));
-				g.fillOval(current.x - dotRadius / 2,
-						current.y - dotRadius / 2, dotRadius, dotRadius);
-				if (previous != null) {
+				g.fillOval(current.x - DOT_RADIUS / 2,
+						current.y - DOT_RADIUS / 2, DOT_RADIUS, DOT_RADIUS);
+				if (i > 0) {
+					final Point previous = TileMath.getPoint(worldMapModel.getTileArray().get(i - 1));
 					g.setColor(Graphic.setAlpha(Color.BLACK, 150));
 					g.drawLine(previous.x, previous.y, current.x, current.y);
 				}
-				boolean isLast = i == worldMapModel.getTileArray().size() - 1;
-				if (isLast) {
+				if (i == size - 1) {
 					g.setColor(Graphic.setAlpha(Color.BLACK, 50));
 					int radius = (int) TileMath.PIXELS_PER_TILE_HORIZONTAL
 							* worldMapModel.getMaxTileRadius();
 					g.fillOval(current.x - (radius / 2), current.y
 							- (radius / 2), radius, radius);
 				}
-				previous = current;
 			}
 			break;
 		case AREA:
-			final int nPoints = worldMapModel.getTileArray().size();
 			if (CodeFormat.VINSERT.equals(contentPaneModel.getCodeFormat())
-					&& nPoints >= 1) {
+					&& size >= 1) {
 				drawLineToMouse = false;
 				final Point one = TileMath.getPoint(worldMapModel
 						.getTileArray().get(0));
-				final Point two = nPoints >= 2 ? TileMath
+				final Point two = size >= 2 ? TileMath
 						.getPoint(worldMapModel.getTileArray().get(1))
 						: worldMapModel.getMouseLocation();
 				final Rectangle r = AwtMath.getRectangle(one, two);
@@ -63,7 +59,7 @@ public enum TileMode {
 			}
 			final int[] xPoints = new int[worldMapModel.getTileArray().size()];
 			final int[] yPoints = new int[worldMapModel.getTileArray().size()];
-			for (int i = 0; i < nPoints; i++) {
+			for (int i = 0; i < size; i++) {
 				final Point point = TileMath.getPoint(worldMapModel
 						.getTileArray().get(i));
 				xPoints[i] = point.x;
@@ -73,16 +69,16 @@ public enum TileMode {
 				break;
 			}
 			g.setColor(Graphic.setAlpha(Color.BLACK, 250));
-			g.drawPolygon(xPoints, yPoints, nPoints);
+			g.drawPolygon(xPoints, yPoints, size);
 			g.setColor(Graphic.setAlpha(Color.WHITE, 150));
-			g.fillPolygon(xPoints, yPoints, nPoints);
+			g.fillPolygon(xPoints, yPoints, size);
 			for (Point current : worldMapModel.getTileArray()) {
 				if (current == null) {
 					continue;
 				}
 				g.setColor(Graphic.setAlpha(Color.WHITE, 150));
-				g.fillOval(current.x - dotRadius / 2,
-						current.y - dotRadius / 2, dotRadius, dotRadius);
+				g.fillOval(current.x - DOT_RADIUS / 2,
+						current.y - DOT_RADIUS / 2, DOT_RADIUS, DOT_RADIUS);
 			}
 			break;
 		}
