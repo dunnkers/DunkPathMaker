@@ -30,10 +30,11 @@ public class WorldMapView extends JScrollPane {
 	private static final long serialVersionUID = 1L;
 	private final WorldMapModel worldMapModel;
 	private final ContentPaneModel contentPaneModel;
-	
+
 	private final WorldMapLabel label;
 
-	public WorldMapView(final WorldMapModel worldMapModel, final ContentPaneModel contentPaneModel) {
+	public WorldMapView(final WorldMapModel worldMapModel,
+			final ContentPaneModel contentPaneModel) {
 		this.worldMapModel = worldMapModel;
 		this.contentPaneModel = contentPaneModel;
 
@@ -45,7 +46,7 @@ public class WorldMapView extends JScrollPane {
 	public class WorldMapLabel extends JLabel {
 
 		private static final long serialVersionUID = 1L;
-		
+
 		private final String textString;
 
 		public WorldMapLabel(final String text) {
@@ -59,9 +60,8 @@ public class WorldMapView extends JScrollPane {
 			if (!(worldMapModel.getTileArray().size() > 0)) {
 				return;
 			}
-			((Graphics2D) g).setRenderingHint
-			  (RenderingHints.KEY_ANTIALIASING,
-			   RenderingHints.VALUE_ANTIALIAS_ON); 
+			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);
 			final int dotRadius = 4;
 			boolean drawLineToMouse = true;
 			switch (worldMapModel.getMode()) {
@@ -98,10 +98,10 @@ public class WorldMapView extends JScrollPane {
 					drawLineToMouse = false;
 					final Point one = TileMath.getPoint(worldMapModel
 							.getTileArray().get(0));
-					final Point two = nPoints >= 2 ? TileMath.getPoint(worldMapModel
-							.getTileArray().get(1)) : worldMapModel.getMouseLocation();
-					final Rectangle r = 
-							AwtMath.getRectangle(one, two);
+					final Point two = nPoints >= 2 ? TileMath
+							.getPoint(worldMapModel.getTileArray().get(1))
+							: worldMapModel.getMouseLocation();
+					final Rectangle r = AwtMath.getRectangle(one, two);
 					g.setColor(Graphic.setAlpha(Color.BLACK, 250));
 					g.drawRect(r.x, r.y, r.width, r.height);
 					g.setColor(Graphic.setAlpha(Color.WHITE, 150));
@@ -135,15 +135,15 @@ public class WorldMapView extends JScrollPane {
 				}
 				break;
 			}
-			final Point lastPoint = TileMath.getPoint(worldMapModel.getTileArray()
-					.get(worldMapModel.getTileArray().size()-1));
+			final Point lastPoint = TileMath.getPoint(worldMapModel
+					.getTileArray()
+					.get(worldMapModel.getTileArray().size() - 1));
 			switch (worldMapModel.getMode()) {
 			case PATH:
 				g.setColor(Graphic.setAlpha(
-						lastPoint.distance(worldMapModel
-								.getMouseLocation()) > worldMapModel
-								.getMaxTileRadius() ? Color.RED
-								: Color.GREEN, 150));
+						lastPoint.distance(worldMapModel.getMouseLocation()) > worldMapModel
+								.getMaxTileRadius() ? Color.RED : Color.GREEN,
+						150));
 				break;
 			default:
 				g.setColor(Color.BLACK);
@@ -159,7 +159,7 @@ public class WorldMapView extends JScrollPane {
 		public String getTextString() {
 			return textString;
 		}
-		
+
 		public void setWorldMap(final WorldMap worldMap) {
 			worldMapModel.setWorldMap(worldMap);
 			new Thread() {
@@ -168,7 +168,8 @@ public class WorldMapView extends JScrollPane {
 					if (worldMap.getImageIcon() == null) {
 						Point viewPosition = getViewport().getViewPosition();
 						setText(getTextString());
-						worldMap.setImageIcon(worldMap.getResourcePath().getIcon());
+						worldMap.setImageIcon(worldMap.getResourcePath()
+								.getIcon());
 						setText(null);
 
 						setIcon(worldMap.getImageIcon());
@@ -178,7 +179,7 @@ public class WorldMapView extends JScrollPane {
 						}
 						getViewport().setViewPosition(viewPosition);
 						return;
-					}else {
+					} else {
 						setIcon(worldMap.getImageIcon());
 					}
 				}

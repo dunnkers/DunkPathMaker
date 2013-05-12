@@ -8,8 +8,9 @@ import java.awt.Rectangle;
  * @author Dunnkers
  */
 public class AwtMath {
-	
-	public static Rectangle getRectangle(final Point pointOne, final Point pointTwo) {
+
+	public static Rectangle getRectangle(final Point pointOne,
+			final Point pointTwo) {
 		final int diffX = pointOne.x - pointTwo.x;
 		final int diffY = pointOne.y - pointTwo.y;
 		final int x = diffX < 0 ? pointOne.x : pointTwo.x;

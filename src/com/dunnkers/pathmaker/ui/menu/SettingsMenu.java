@@ -29,7 +29,8 @@ public class SettingsMenu extends JMenu {
 	private final ContentPaneModel contentPaneModel;
 	private final WorldMapModel worldMapModel;
 
-	public SettingsMenu(final String text, final ContentPaneModel contentPaneModelParam,
+	public SettingsMenu(final String text,
+			final ContentPaneModel contentPaneModelParam,
 			final WorldMapModel worldMapModelParam) {
 		this.setText(text);
 		this.contentPaneModel = contentPaneModelParam;
@@ -59,7 +60,9 @@ public class SettingsMenu extends JMenu {
 		this.buttonGroup.add(path);
 		this.buttonGroup.add(area);
 
-		this.codeFormatMenu = new CodeFormatMenu("Code Format", contentPaneModel, worldMapModel);
+		this.codeFormatMenu = new CodeFormatMenu("Code Format",
+				contentPaneModel,
+				worldMapModel);
 		this.codeFormatMenu.setIcon(UIManager.getIcon("FileView.fileIcon"));
 		{
 			this.sensitivity = new JMenuItem("Drag sensitivity");
@@ -91,8 +94,8 @@ public class SettingsMenu extends JMenu {
 
 	private void showInputDialog() {
 		sensitivitySlider.setValue(worldMapModel.getDragSensitivity());
-		final int returnValue = JOptionPane.showOptionDialog(contentPaneModel.getComponent(),
-				new Object[] {
+		final int returnValue = JOptionPane.showOptionDialog(
+				contentPaneModel.getComponent(), new Object[] {
 						"Change the distance between tiles",
 						sensitivitySlider }, "Change drag sensitivity",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,

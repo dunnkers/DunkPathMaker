@@ -29,13 +29,15 @@ public class HelpMenu extends JMenu {
 
 	public HelpMenu(final String text, final Component parentComponent) {
 
-		this.aboutTitle = new JLabel(Configuration.APPLICATION_TITLE, SwingConstants.CENTER);
+		this.aboutTitle = new JLabel(Configuration.APPLICATION_TITLE,
+				SwingConstants.CENTER);
 		final Font aboutTitleFont = new Font(aboutTitle.getFont().getName(),
 				aboutTitle.getFont().getStyle(),
 				aboutTitle.getFont().getSize() + 2);
 		this.aboutTitle.setFont(aboutTitleFont);
 		this.aboutVersion = new JLabel("Version "
-				+ String.valueOf(Configuration.APPLICATION_VERSION), SwingConstants.CENTER);
+				+ String.valueOf(Configuration.APPLICATION_VERSION),
+				SwingConstants.CENTER);
 		final Font aboutVersionFont = new Font(aboutVersion.getFont().getName(),
 				aboutVersion.getFont().getStyle(),
 				aboutVersion.getFont().getSize() - 2);
@@ -44,7 +46,7 @@ public class HelpMenu extends JMenu {
 		this.copyrightNote = new JLabel("(c) Copyright "
 				+ Configuration.APPLICATION_TITLE
 				+ " contributors and others, 2013. All rights reserved.");
-		
+
 		this.help = new JMenuItem("Online Help...");
 		this.help.setEnabled(false);
 		this.forums = new JMenuItem("Visit Forums...");
@@ -61,10 +63,9 @@ public class HelpMenu extends JMenu {
 							aboutVersion,
 							Box.createHorizontalGlue(),
 							aboutNote,
-							copyrightNote
-							};
-					JOptionPane.showMessageDialog(parentComponent, message, "About "
-							+ Configuration.APPLICATION_TITLE,
+							copyrightNote };
+					JOptionPane.showMessageDialog(parentComponent, message,
+							"About " + Configuration.APPLICATION_TITLE,
 							JOptionPane.PLAIN_MESSAGE);
 				}
 			});

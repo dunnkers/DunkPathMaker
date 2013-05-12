@@ -35,7 +35,7 @@ public class MapMenu extends JMenu {
 			add(map);
 		}
 	}
-	
+
 	public void addMapActionListener(final ActionListener actionListener) {
 		for (final JRadioButtonMenuItem map : maps) {
 			map.addActionListener(actionListener);

@@ -21,7 +21,7 @@ public class WorldMapModel {
 	private int maxTileRadius;
 	private int dragSensitivity;
 	private WorldMap worldMap;
-	
+
 	private PropertyChangeListener modePropertyChangeListener;
 
 	public WorldMapModel() {
@@ -83,8 +83,9 @@ public class WorldMapModel {
 	public void setDragSensitivity(int dragSensitivity) {
 		this.dragSensitivity = dragSensitivity;
 	}
-	
-	public void setModePropertyChangeListener(final PropertyChangeListener modePropertyChangeListener) {
+
+	public void setModePropertyChangeListener(
+			final PropertyChangeListener modePropertyChangeListener) {
 		this.modePropertyChangeListener = modePropertyChangeListener;
 	}
 

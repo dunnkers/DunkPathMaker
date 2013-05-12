@@ -70,11 +70,15 @@ public class TileMath {
 
 	/**
 	 * Get the distance between two points.
-	 * @param current The first point.
-	 * @param destination The second point.
+	 * 
+	 * @param current
+	 *            The first point.
+	 * @param destination
+	 *            The second point.
 	 * @return The distance between the two points in a double.
 	 */
-	public static double getDistanceBetween(final Point current, final Point destination) {
+	public static double getDistanceBetween(final Point current,
+			final Point destination) {
 		return Math
 				.sqrt(((current.x - destination.x) * (current.x - destination.x))
 						+ ((current.y - destination.y) * (current.y - destination.y)));

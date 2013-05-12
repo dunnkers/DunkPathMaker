@@ -19,7 +19,6 @@ import com.dunnkers.util.resource.ResourcePath;
  */
 public class Frame extends JFrame {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	public Frame() {
@@ -30,10 +29,10 @@ public class Frame extends JFrame {
 			}
 		});
 		window.initMenuBar(this);
-		
+
 		final Container contentPane = this.getContentPane();
 		window.initContentPane(contentPane);
-		
+
 		this.setTitle(Configuration.WINDOW_TITLE);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		final ArrayList<Image> icons = new ArrayList<Image>();
@@ -45,7 +44,7 @@ public class Frame extends JFrame {
 		this.setSize(Configuration.WINDOW_SIZE);
 		this.setLocationRelativeTo(this.getOwner());
 	}
-	
+
 	protected Component getInstance() {
 		return this;
 	}

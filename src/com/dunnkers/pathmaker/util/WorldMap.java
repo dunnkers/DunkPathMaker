@@ -11,16 +11,17 @@ import com.dunnkers.util.resource.ResourcePath;
  */
 public enum WorldMap {
 
-	OLD_SCHOOL("Old school (2007)", Configuration.IMAGE_MAP_07, true),
-	RECENT("Recent (EOC)", Configuration.IMAGE_MAP_EOC, true);
-	
+	OLD_SCHOOL("Old school (2007)", Configuration.IMAGE_MAP_07, true), RECENT(
+			"Recent (EOC)", Configuration.IMAGE_MAP_EOC, true);
+
 	private final String name;
 	private final ResourcePath resourcePath;
 	private final boolean enabled;
-	
+
 	private ImageIcon imageIcon;
-	
-	private WorldMap(final String name, final ResourcePath resourcePath, final boolean enabled) {
+
+	private WorldMap(final String name, final ResourcePath resourcePath,
+			final boolean enabled) {
 		this.name = name;
 		this.resourcePath = resourcePath;
 		this.enabled = enabled;

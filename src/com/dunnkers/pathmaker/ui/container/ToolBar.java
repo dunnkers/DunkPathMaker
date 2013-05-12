@@ -82,18 +82,19 @@ public class ToolBar extends JToolBar {
 				public void actionPerformed(final ActionEvent e) {
 					final String code = worldMapController
 							.getCode(contentPaneModel.getCodeFormat());
-					
+
 					final StringSelection selection = new StringSelection(code);
 					final Clipboard clipboard = Toolkit.getDefaultToolkit()
 							.getSystemClipboard();
 					clipboard.setContents(selection, selection);
-					
+
 					generateTextArea.setText(code);
 					final Object message = new Object[] {
 							"Code",
 							generateScrollPane,
 							"Copied to clipboard!" };
-					JOptionPane.showMessageDialog(contentPaneModel.getComponent(), message,
+					JOptionPane.showMessageDialog(
+							contentPaneModel.getComponent(), message,
 							"Generated Code", JOptionPane.PLAIN_MESSAGE);
 				}
 			});

@@ -38,7 +38,8 @@ public class WorldMapController {
 	public WorldMapController(final WorldMapModel worldMapModel,
 			final WorldMapView worldMapView, ContentPaneModel contentPaneModel) {
 		this.worldMapModel = worldMapModel;
-		this.worldMapModel.setModePropertyChangeListener(new ModePropertyChangeListener());
+		this.worldMapModel
+				.setModePropertyChangeListener(new ModePropertyChangeListener());
 		this.worldMapView = worldMapView;
 		this.contentPaneModel = contentPaneModel;
 
@@ -51,7 +52,7 @@ public class WorldMapController {
 		undoManager = new UndoManager();
 		undoManager.setLimit(1000);
 	}
-	
+
 	public class ModePropertyChangeListener implements PropertyChangeListener {
 
 		@Override
@@ -246,14 +247,15 @@ public class WorldMapController {
 		worldMapModel.getTileArray().clear();
 		return undoManager.canRedo();
 	}
-	
+
 	public String getCode(final CodeFormat codeFormat) {
-		return codeFormat.getCode(worldMapModel.getTileArray(), worldMapModel.getMode());
+		return codeFormat.getCode(worldMapModel.getTileArray(),
+				worldMapModel.getMode());
 	}
 
 	public void onMouseMove(MouseEvent e) {
 	}
-	
+
 	public UndoManager getUndoManager() {
 		return undoManager;
 	}

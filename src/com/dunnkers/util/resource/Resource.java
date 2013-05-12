@@ -13,9 +13,9 @@ import javax.swing.ImageIcon;
  * @author Dunnkers
  */
 public class Resource {
-	
+
 	private final Class<?> resourceClass;
-	
+
 	public Resource(Class<?> resourceClass) {
 		this.resourceClass = resourceClass;
 	}
@@ -30,8 +30,8 @@ public class Resource {
 
 	public Image getImage(final String path) {
 		try {
-			final URL url = getResourceClass().getClassLoader()
-					.getResource(path);
+			final URL url = getResourceClass().getClassLoader().getResource(
+					path);
 			/* when loaded from classes */
 			if (url == null) {
 				return ImageIO.read(new File(path));

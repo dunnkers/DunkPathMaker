@@ -19,6 +19,6 @@ public abstract class ContentPaneModel {
 	public void setCodeFormat(CodeFormat codeFormat) {
 		this.codeFormat = codeFormat;
 	}
-	
+
 	public abstract Component getComponent();
 }

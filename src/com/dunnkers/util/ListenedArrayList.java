@@ -7,11 +7,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * Fires a ChangeEvent when an element has been added, removed or
- * if the array was cleared.
+ * Fires a ChangeEvent when an element has been added, removed or if the array
+ * was cleared.
+ * 
  * @author Dunnkers
- *
- * @param <T> ArrayList type.
+ * 
+ * @param <T>
+ *            ArrayList type.
  */
 public class ListenedArrayList<T> extends ArrayList<T> {
 
@@ -34,20 +36,20 @@ public class ListenedArrayList<T> extends ArrayList<T> {
 		changeListener.stateChanged(new ChangeEvent(e));
 		return result;
 	}
-	
+
 	@Override
 	public void add(int index, T element) {
 		super.add(index, element);
 		changeListener.stateChanged(new ChangeEvent(element));
 	}
-	
+
 	@Override
 	public boolean addAll(int index, Collection<? extends T> c) {
 		final boolean result = super.addAll(index, c);
 		changeListener.stateChanged(new ChangeEvent(c));
 		return result;
 	}
-	
+
 	@Override
 	public T remove(int index) {
 		final T result = super.remove(index);

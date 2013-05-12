@@ -62,14 +62,15 @@ public enum CodeFormat {
 					output.append("You selected too many tiles!\n");
 					output.append("A vInsert Area only supports a rectangle which is up to 2 tiles.");
 					return output.toString();
-				}else if (tileArray.size() < 2) {
+				} else if (tileArray.size() < 2) {
 					output = new StringBuilder(50);
 					output.append("You haven't selected enough tiles!\n");
 					output.append("A vInsert Area needs at least 2 tiles.");
 					return output.toString();
-				}else {
+				} else {
 					// when converting the todo, notice this!
-					final Rectangle rectangle = AwtMath.getRectangle(tileArray.get(0), tileArray.get(1));
+					final Rectangle rectangle = AwtMath.getRectangle(
+							tileArray.get(0), tileArray.get(1));
 					output.append(String.format("\t\t\t%s, %s, %s, %s",
 							rectangle.x, rectangle.y + rectangle.height,
 							rectangle.width, rectangle.height));
