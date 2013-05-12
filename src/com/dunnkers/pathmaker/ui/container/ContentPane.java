@@ -15,7 +15,6 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.dunnkers.pathmaker.ui.menu.MapMenu;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapView;
@@ -35,6 +34,7 @@ public class ContentPane extends Container {
 	private final JLabel statusLabel;
 
 	private final WorldMapModel worldMapModel;
+	private final TileArrayChangeListener tileArrayChangeListener;
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
 	
@@ -44,9 +44,10 @@ public class ContentPane extends Container {
 		this.contentPaneModel = contentPaneModel;
 		
 		worldMapModel = new WorldMapModel();
+		this.tileArrayChangeListener = new TileArrayChangeListener();
 		worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
-				new TileArrayChangeListener()));
-		worldMapView = new WorldMapView(worldMapModel);
+				tileArrayChangeListener));
+		worldMapView = new WorldMapView(worldMapModel, contentPaneModel);
 		worldMapController = new InteractiveWorldMapController(worldMapModel,
 				worldMapView);
 
@@ -62,6 +63,7 @@ public class ContentPane extends Container {
 							}
 							worldMapView.getLabel().setWorldMap(worldMap);
 							menuBar.getSettingsMenu().getCodeFormatMenu().construct();
+							tileArrayChangeListener.stateChanged(null);
 							break;
 						}
 					}
@@ -96,7 +98,7 @@ public class ContentPane extends Container {
 
 		public InteractiveWorldMapController(WorldMapModel worldMapModel,
 				WorldMapView worldMapView) {
-			super(worldMapModel, worldMapView);
+			super(worldMapModel, worldMapView, contentPaneModel);
 		}
 
 		@Override

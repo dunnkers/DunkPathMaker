@@ -14,7 +14,6 @@ import javax.swing.UIManager;
 import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
-import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMode;
 
 public class SettingsMenu extends JMenu {
@@ -49,7 +48,6 @@ public class SettingsMenu extends JMenu {
 		}
 		{
 			this.area = new JRadioButtonMenuItem("Area");
-			this.area.setEnabled(false);
 			this.area.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {

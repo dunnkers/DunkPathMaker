@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
@@ -13,9 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import com.dunnkers.awt.AwtMath;
+import com.dunnkers.awt.Graphic;
+import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
+import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMath;
 import com.dunnkers.pathmaker.util.WorldMap;
-import com.dunnkers.util.Graphic;
 
 /**
  * 
@@ -25,10 +29,13 @@ public class WorldMapView extends JScrollPane {
 
 	private static final long serialVersionUID = 1L;
 	private final WorldMapModel worldMapModel;
+	private final ContentPaneModel contentPaneModel;
+	
 	private final WorldMapLabel label;
 
-	public WorldMapView(final WorldMapModel worldMapModel) {
+	public WorldMapView(final WorldMapModel worldMapModel, final ContentPaneModel contentPaneModel) {
 		this.worldMapModel = worldMapModel;
+		this.contentPaneModel = contentPaneModel;
 
 		label = new WorldMapLabel("Loading world map...");
 		this.setViewportView(label);
@@ -56,6 +63,7 @@ public class WorldMapView extends JScrollPane {
 			  (RenderingHints.KEY_ANTIALIASING,
 			   RenderingHints.VALUE_ANTIALIAS_ON); 
 			final int dotRadius = 4;
+			boolean drawLineToMouse = true;
 			switch (worldMapModel.getMode()) {
 			case PATH:
 				Point previous = null;
@@ -84,12 +92,27 @@ public class WorldMapView extends JScrollPane {
 				}
 				break;
 			case AREA:
+				final int nPoints = worldMapModel.getTileArray().size();
+				if (CodeFormat.VINSERT.equals(contentPaneModel.getCodeFormat())
+						&& nPoints >= 1) {
+					drawLineToMouse = false;
+					final Point one = TileMath.getPoint(worldMapModel
+							.getTileArray().get(0));
+					final Point two = nPoints >= 2 ? TileMath.getPoint(worldMapModel
+							.getTileArray().get(1)) : worldMapModel.getMouseLocation();
+					final Rectangle r = 
+							AwtMath.getRectangle(one, two);
+					g.setColor(Graphic.setAlpha(Color.BLACK, 250));
+					g.drawRect(r.x, r.y, r.width, r.height);
+					g.setColor(Graphic.setAlpha(Color.WHITE, 150));
+					g.fillRect(r.x, r.y, r.width, r.height);
+					break;
+				}
 				final int[] xPoints = new int[worldMapModel.getTileArray()
 						.size()];
 				final int[] yPoints = new int[worldMapModel.getTileArray()
 						.size()];
-				final int nPoints = worldMapModel.getTileArray().size();
-				for (int i = 0; i < worldMapModel.getTileArray().size(); i++) {
+				for (int i = 0; i < nPoints; i++) {
 					final Point point = TileMath.getPoint(worldMapModel
 							.getTileArray().get(i));
 					xPoints[i] = point.x;
@@ -126,9 +149,11 @@ public class WorldMapView extends JScrollPane {
 				g.setColor(Color.BLACK);
 				break;
 			}
-			g.drawLine(lastPoint.x, lastPoint.y,
-					worldMapModel.getMouseLocation().x,
-					worldMapModel.getMouseLocation().y);
+			if (drawLineToMouse) {
+				g.drawLine(lastPoint.x, lastPoint.y,
+						worldMapModel.getMouseLocation().x,
+						worldMapModel.getMouseLocation().y);
+			}
 		}
 
 		public String getTextString() {

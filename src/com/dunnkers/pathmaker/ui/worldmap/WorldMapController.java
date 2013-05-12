@@ -15,8 +15,10 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
+import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMath;
+import com.dunnkers.pathmaker.util.TileMode;
 
 /**
  * 
@@ -31,12 +33,14 @@ public class WorldMapController {
 	private final MouseMotionAdapter mouseMotionAdapter;
 
 	private final UndoManager undoManager;
+	private final ContentPaneModel contentPaneModel;
 
 	public WorldMapController(final WorldMapModel worldMapModel,
-			final WorldMapView worldMapView) {
+			final WorldMapView worldMapView, ContentPaneModel contentPaneModel) {
 		this.worldMapModel = worldMapModel;
 		this.worldMapModel.setModePropertyChangeListener(new ModePropertyChangeListener());
 		this.worldMapView = worldMapView;
+		this.contentPaneModel = contentPaneModel;
 
 		mouseAdapter = new MouseAdapter();
 		mouseMotionAdapter = new MouseMotionAdapter();
@@ -202,6 +206,12 @@ public class WorldMapController {
 	}
 
 	private void addTile(final Point tilePoint) {
+		if (CodeFormat.VINSERT.equals(contentPaneModel.getCodeFormat())) {
+			if (TileMode.AREA.equals(worldMapModel.getMode())
+					&& worldMapModel.getTileArray().size() >= 2) {
+				return;
+			}
+		}
 		worldMapModel.getTileArray().add(tilePoint);
 		final UndoableEditEvent undoableEditEvent = new UndoableEditEvent(worldMapView
 				.getLabel(), new UndoableTileEdit(tilePoint));

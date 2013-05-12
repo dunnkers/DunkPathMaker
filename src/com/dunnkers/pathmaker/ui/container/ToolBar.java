@@ -70,7 +70,7 @@ public class ToolBar extends JToolBar {
 			this.clear.setIcon(Configuration.ICON_CLEAR.getIcon());
 		}
 		{
-			this.generateTextArea = new JTextArea("No code generated", 20, 30);
+			this.generateTextArea = new JTextArea("No code generated", 20, 35);
 			this.generateScrollPane = new JScrollPane(generateTextArea);
 
 			this.generate = new JButton("Generate",
