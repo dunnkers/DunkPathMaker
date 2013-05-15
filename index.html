@@ -1,3 +1,8 @@
+---
+layout: default
+title: DunkPathMaker 
+---
+
 <!DOCTYPE html>
 <html>
 
@@ -31,6 +36,10 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
+        {% for post in site.posts %}
+            <p>{{ post.content }}</p>
+        {% endFor %}
+
         <h3>Creates your paths with ease!</h3>
 
 <p>This uses the world map to create paths, which makes it a very fast way to code a large walking task.</p>
