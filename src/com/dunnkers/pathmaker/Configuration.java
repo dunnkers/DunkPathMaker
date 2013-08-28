@@ -57,6 +57,8 @@ public class Configuration {
 			"res/icon-clear.png");
 	public static final ResourcePath ICON_GLOBE = new ResourcePath(RESOURCE,
 			"res/icon-globe.png");
+	public static final ResourcePath ICON_INFO = new ResourcePath(RESOURCE,
+			"res/icon-info.png");
 
 	public static final String LINK_WIKI = "https://github.com/dunnkers/DunkPathMaker/wiki";
 

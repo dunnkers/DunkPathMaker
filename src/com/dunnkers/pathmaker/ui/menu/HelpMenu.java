@@ -86,6 +86,7 @@ public class HelpMenu extends JMenu {
 							JOptionPane.PLAIN_MESSAGE);
 				}
 			});
+			this.about.setIcon(Configuration.ICON_INFO.getIcon());
 		}
 		this.setText(text);
 		init();
