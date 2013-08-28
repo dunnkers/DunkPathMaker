@@ -1,9 +1,13 @@
 package com.dunnkers.pathmaker.ui.menu;
 
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.swing.Box;
 import javax.swing.JLabel;
@@ -47,8 +51,21 @@ public class HelpMenu extends JMenu {
 				+ Configuration.APPLICATION_TITLE
 				+ " contributors and others, 2013. All rights reserved.");
 
-		this.help = new JMenuItem("Online Help...");
-		this.help.setEnabled(false);
+		{
+			this.help = new JMenuItem("Online Wiki...");
+			this.help.setIcon(Configuration.ICON_GLOBE.getIcon());
+			this.help.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+						Desktop.getDesktop().browse(new URI(Configuration.LINK_WIKI));
+					} catch (URISyntaxException | IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
 		this.forums = new JMenuItem("Visit Forums...");
 		this.forums.setEnabled(false);
 		{
