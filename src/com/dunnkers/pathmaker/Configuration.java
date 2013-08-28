@@ -55,6 +55,10 @@ public class Configuration {
 			"res/icon-help.png");
 	public static final ResourcePath ICON_CLEAR = new ResourcePath(RESOURCE,
 			"res/icon-clear.png");
+	public static final ResourcePath ICON_GLOBE = new ResourcePath(RESOURCE,
+			"res/icon-globe.png");
+
+	public static final String LINK_WIKI = "https://github.com/dunnkers/DunkPathMaker/wiki";
 
 	// default values
 	public static final int INITIAL_DRAG_SENSITIVITY = 10;
