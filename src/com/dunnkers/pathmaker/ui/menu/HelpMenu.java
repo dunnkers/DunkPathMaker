@@ -58,17 +58,21 @@ public class HelpMenu extends JMenu {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					try {
-						Desktop.getDesktop().browse(new URI(Configuration.LINK_WIKI));
-					} catch (URISyntaxException | IOException e1) {
-						e1.printStackTrace();
-					}
+					browseURLOnDesktop(Configuration.LINK_WIKI);
 				}
 			});
 		}
-		// TODO add portal dunnkers.github.io/dunkpathmaker
-		this.forums = new JMenuItem("Visit Forums...");
-		this.forums.setEnabled(false);
+		{
+			this.forums = new JMenuItem("Visit Forums...");
+			this.forums.setIcon(Configuration.ICON_FORUMS.getIcon());
+			this.forums.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					browseURLOnDesktop(Configuration.LINK_FORUMS);
+				}
+			});
+		}
 		{
 			this.about = new JMenuItem("About "
 					+ Configuration.APPLICATION_TITLE);
@@ -98,5 +102,13 @@ public class HelpMenu extends JMenu {
 		add(forums);
 		addSeparator();
 		add(about);
+	}
+	
+	private void browseURLOnDesktop(final String spec) {
+		try {
+			Desktop.getDesktop().browse(new URI(spec));
+		} catch (URISyntaxException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

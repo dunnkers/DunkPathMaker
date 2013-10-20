@@ -63,8 +63,11 @@ public class Configuration {
 			"res/icon-globe.png");
 	public static final ResourcePath ICON_INFO = new ResourcePath(RESOURCE,
 			"res/icon-info.png");
+	public static final ResourcePath ICON_FORUMS = new ResourcePath(RESOURCE,
+			"res/icon-forums.png");
 
 	public static final String LINK_WIKI = "https://github.com/dunnkers/DunkPathMaker/wiki";
+	public static final String LINK_FORUMS = "http://dunnkers.github.io/DunkPathMaker/";
 
 	/* TODO default values; save them on computer */
 	// default values
