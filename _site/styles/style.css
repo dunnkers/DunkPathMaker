@@ -307,9 +307,19 @@ Full-Width Styles
   text-shadow: #111 0px 0px 10px;
 }
 
+#icon {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  z-index: 10;
+  left: -48px;
+  top: 60px;
+  background: url('../images/dunkpathmaker-icon.png') no-repeat 0% 90%;
+}
+
 #downloads {
   position: absolute;
-  width: 210px;
+  width: 140px;
   z-index: 10;
   bottom: -40px;
   right: 0;
