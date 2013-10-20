@@ -40,21 +40,6 @@ public enum TileMode {
 			}
 			break;
 		case AREA:
-			/*if (CodeFormat.VINSERT.equals(contentPaneModel.getCodeFormat())
-					&& size >= 1) {
-				drawLineToMouse = false;
-				final Point one = TileMath.getPoint(worldMapModel
-						.getTileArray().get(0));
-				final Point two = size >= 2 ? TileMath
-						.getPoint(worldMapModel.getTileArray().get(1))
-						: worldMapModel.getMouseLocation();
-				final Rectangle r = AwtMath.getRectangle(one, two);
-				g.setColor(Graphic.setAlpha(Color.BLACK, 250));
-				g.drawRect(r.x, r.y, r.width, r.height);
-				g.setColor(Graphic.setAlpha(Color.WHITE, 150));
-				g.fillRect(r.x, r.y, r.width, r.height);
-				break;
-			}*/
 			final int[] xPoints = new int[worldMapModel.getTileArray().size()];
 			final int[] yPoints = new int[worldMapModel.getTileArray().size()];
 			for (int i = 0; i < size; i++) {
