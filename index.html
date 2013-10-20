@@ -1,66 +1,8 @@
-<!DOCTYPE html>
-<html>
+---
+layout: default
+title: DunkPathMaker 
+---
 
-<head>
-	<meta charset='utf-8' />
-	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-	<meta name="description" content="DunkPathMaker : A useful tool for RuneScape bot scripters" />
-
-	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="styles/style.css">
-	<title>DunkPathMaker</title>
-</head>
-
-<body>
-	<!-- HEADER -->
-	<div id="header_wrap" class="outer">
-		<header class="inner">
-			<a id="forkme_banner" href="https://github.com/dunnkers/DunkPathMaker">View on GitHub</a>
-
-			<h1 id="project_title">DunkPathMaker</h1>
-			<h2 id="project_tagline">A useful tool for RuneScape bot scripters</h2>
-
-			<section id="downloads">
-				<a class="zip_download_link" href="https://github.com/dunnkers/DunkPathMaker/zipball/master">Download this project as a .zip file</a>
-				<a class="tar_download_link" href="https://github.com/dunnkers/DunkPathMaker/tarball/master">Download this project as a tar.gz file</a>
-			</section>
-		</header>
-	</div>
-
-	<!-- MAIN CONTENT -->
-	<div id="main_content_wrap" class="outer">
-		<section id="main_content" class="inner">
-			<h1>Visit the forums</h1>
-			<div class="row">
-				<div class="col-lg-4 col-md-offset-4">
-					<img src="http://fc08.deviantart.net/fs71/f/2013/019/d/4/powerbot__s_logo___redone_by_pitchgfx-d5s10ig.png
-					" alt="Bootstrap" style="width: 150px; height: 150px;">
-					<h2>Powerbot</h2>
-					<p>DunkPathMaker was released on Powerbot on October 20th.</p>
-					<p><a class="btn btn-primary btn-lg" href="http://handlebarsjs.com/">Visit forum »</a></p>
-				</div>
-			</div>
-			<h1>Posts</h1>
-			
-		</section>
-	</div>-->
-
-	<!-- FOOTER  -->
-	<div id="footer_wrap" class="outer">
-		<footer class="inner">
-			<p class="copyright">DunkPathMaker maintained by <a href="https://github.com/dunnkers">dunnkers</a></p></p>
-		</footer>
-	</div>
-
-	<script type="text/javascript">
-	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-	try {
-		var pageTracker = _gat._getTracker("UA-40680192-4");
-		pageTracker._trackPageview();
-	} catch(err) {}
-	</script>
-</body>
-</html>
+        {% for post in site.posts %}
+            <p>{{ post.content }}</p>
+        {% endFor %}
