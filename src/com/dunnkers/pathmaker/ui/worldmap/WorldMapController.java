@@ -207,12 +207,12 @@ public class WorldMapController {
 	}
 
 	private void addTile(final Point tilePoint) {
-		if (CodeFormat.VINSERT.equals(contentPaneModel.getCodeFormat())) {
+		/*if (CodeFormat.VINSERT.equals(contentPaneModel.getCodeFormat())) {
 			if (TileMode.AREA.equals(worldMapModel.getMode())
 					&& worldMapModel.getTileArray().size() >= 2) {
 				return;
 			}
-		}
+		}*/
 		worldMapModel.getTileArray().add(tilePoint);
 		final UndoableEditEvent undoableEditEvent = new UndoableEditEvent(worldMapView
 				.getLabel(), new UndoableTileEdit(tilePoint));

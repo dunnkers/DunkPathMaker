@@ -42,7 +42,7 @@ public enum TileMode {
 			}
 			break;
 		case AREA:
-			if (CodeFormat.VINSERT.equals(contentPaneModel.getCodeFormat())
+			/*if (CodeFormat.VINSERT.equals(contentPaneModel.getCodeFormat())
 					&& size >= 1) {
 				drawLineToMouse = false;
 				final Point one = TileMath.getPoint(worldMapModel
@@ -56,7 +56,7 @@ public enum TileMode {
 				g.setColor(Graphic.setAlpha(Color.WHITE, 150));
 				g.fillRect(r.x, r.y, r.width, r.height);
 				break;
-			}
+			}*/
 			final int[] xPoints = new int[worldMapModel.getTileArray().size()];
 			final int[] yPoints = new int[worldMapModel.getTileArray().size()];
 			for (int i = 0; i < size; i++) {

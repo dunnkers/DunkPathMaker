@@ -13,7 +13,7 @@ import com.dunnkers.awt.AwtMath;
  * @author Dunnkers
  */
 public enum CodeFormat {
-	VINSERT("vInsert", true, WorldMap.OLD_SCHOOL), 
+	//VINSERT("vInsert", false, WorldMap.OLD_SCHOOL), 
 	OSBOT("OSBot", false, WorldMap.OLD_SCHOOL), 
 	TRIBOT("TRiBot", false, WorldMap.OLD_SCHOOL, WorldMap.RECENT), 
 	RSBOT("RSBot", true, WorldMap.RECENT);
@@ -53,7 +53,7 @@ public enum CodeFormat {
 		case AREA:
 			output.append(getArea(tileArray));
 			switch (this) {
-			case VINSERT:
+			/*case VINSERT:
 				if (tileArray.size() > 2) {
 					output = new StringBuilder(50);
 					output.append("You selected too many tiles!\n");
@@ -72,7 +72,7 @@ public enum CodeFormat {
 							rectangle.x, rectangle.y + rectangle.height,
 							rectangle.width, rectangle.height));
 				}
-				break;
+				break;*/
 			default:
 				output.append(geFormattedTiles(tileArray));
 				break;
@@ -88,8 +88,8 @@ public enum CodeFormat {
 
 	private String getPath() {
 		switch (this) {
-		case VINSERT:
-			return "\tprivate final Path path = new Path(\n";
+		/*case VINSERT:
+			return "\tprivate final Path path = new Path(\n";*/
 		case RSBOT:
 			return "\tprivate final Tile[] path = new Tile[] {\n";
 		default:
@@ -99,8 +99,8 @@ public enum CodeFormat {
 
 	private String getArea(final ArrayList<Point> tileArray) {
 		switch (this) {
-		case VINSERT:
-			return "\tprivate final Area area = new Area(\n";
+		/*case VINSERT:
+			return "\tprivate final Area area = new Area(\n";*/
 		case RSBOT:
 			return "\tprivate final Area area = new Area(\n";
 		default:
@@ -110,8 +110,8 @@ public enum CodeFormat {
 
 	private String getTile(final Point point) {
 		switch (this) {
-		case VINSERT:
-			return String.format("new Tile(%s, %s)", point.x, point.y);
+		/*case VINSERT:
+			return String.format("new Tile(%s, %s)", point.x, point.y);*/
 		case RSBOT:
 			return String.format("new Tile(%s, %s, 0)", point.x, point.y);
 		default:

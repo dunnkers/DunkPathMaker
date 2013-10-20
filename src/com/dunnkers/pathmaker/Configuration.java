@@ -2,6 +2,7 @@ package com.dunnkers.pathmaker;
 
 import java.awt.Dimension;
 
+import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.util.resource.Resource;
 import com.dunnkers.util.resource.ResourcePath;
 
@@ -22,8 +23,10 @@ public class Configuration {
 			+ APPLICATION_ALIAS;
 	public static final Dimension WINDOW_SIZE = new Dimension(750, 600);
 
-	// TODO ResourcePath: only store Resource once; it is now stored in all
-	// ResourcePaths
+	/*
+	 * TODO ResourcePath: only store variable Resource once; it is now stored in
+	 * all ResourcePaths
+	 */
 	public static final Resource RESOURCE = new Resource(DunkPathMaker.class);
 	public static final ResourcePath IMAGE_MAP_07 = new ResourcePath(RESOURCE,
 			"res/runescape-map-07.jpg");
@@ -62,9 +65,11 @@ public class Configuration {
 
 	public static final String LINK_WIKI = "https://github.com/dunnkers/DunkPathMaker/wiki";
 
+	/* TODO Default values; save them on computer */
 	// default values
 	public static final int INITIAL_DRAG_SENSITIVITY = 10;
 	public static final int MAX_TILE_RADIUS = 15;
+	public static final CodeFormat INITIAL_CODE_FORMAT = CodeFormat.RSBOT;
 
 	private Configuration() {
 	}

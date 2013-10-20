@@ -3,13 +3,14 @@ package com.dunnkers.pathmaker.ui.container;
 import java.awt.Component;
 
 import com.dunnkers.pathmaker.util.CodeFormat;
+import com.dunnkers.pathmaker.Configuration;
 
 public abstract class ContentPaneModel {
 
 	private CodeFormat codeFormat;
 
 	public ContentPaneModel() {
-		this.codeFormat = CodeFormat.VINSERT;
+		this.codeFormat = Configuration.INITIAL_CODE_FORMAT;
 	}
 
 	public CodeFormat getCodeFormat() {
