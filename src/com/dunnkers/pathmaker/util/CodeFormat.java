@@ -13,9 +13,10 @@ import com.dunnkers.awt.AwtMath;
  * @author Dunnkers
  */
 public enum CodeFormat {
-	VINSERT("vInsert", true, WorldMap.OLD_SCHOOL), OSBOT("OSBot", false,
-			WorldMap.OLD_SCHOOL), TRIBOT("TRiBot", false, WorldMap.OLD_SCHOOL,
-			WorldMap.RECENT), RSBOT("RSBot", false, WorldMap.RECENT);
+	VINSERT("vInsert", true, WorldMap.OLD_SCHOOL), 
+	OSBOT("OSBot", false, WorldMap.OLD_SCHOOL), 
+	TRIBOT("TRiBot", false, WorldMap.OLD_SCHOOL, WorldMap.RECENT), 
+	RSBOT("RSBot", true, WorldMap.RECENT);
 
 	private final String name;
 	private final List<WorldMap> worldMaps;
@@ -46,11 +47,7 @@ public enum CodeFormat {
 		switch (tileMode) {
 		case PATH:
 			output.append(getPath());
-			for (int i = 0; i < tileArray.size(); i++) {
-				final boolean lastTile = tileArray.size() - 1 == i;
-				output.append("\t\t\t" + getTile(tileArray.get(i))
-						+ (lastTile ? "" : ",") + "\n");
-			}
+			output.append(geFormattedTiles(tileArray));
 			output.append("\t);");
 			break;
 		case AREA:
@@ -68,7 +65,7 @@ public enum CodeFormat {
 					output.append("A vInsert Area needs at least 2 tiles.");
 					return output.toString();
 				} else {
-					// when converting the todo, notice this!
+					// TODO when converting the todo, notice this!
 					final Rectangle rectangle = AwtMath.getRectangle(
 							tileArray.get(0), tileArray.get(1));
 					output.append(String.format("\t\t\t%s, %s, %s, %s",
@@ -77,9 +74,10 @@ public enum CodeFormat {
 				}
 				break;
 			default:
+				output.append(geFormattedTiles(tileArray));
 				break;
 			}
-			output.append(");");
+			output.append("\t);");
 			break;
 		default:
 			output.append(DEFAULT_TEXT);
@@ -92,6 +90,8 @@ public enum CodeFormat {
 		switch (this) {
 		case VINSERT:
 			return "\tprivate final Path path = new Path(\n";
+		case RSBOT:
+			return "\tprivate final Tile[] path = new Tile[] {\n";
 		default:
 			return DEFAULT_TEXT;
 		}
@@ -100,6 +100,8 @@ public enum CodeFormat {
 	private String getArea(final ArrayList<Point> tileArray) {
 		switch (this) {
 		case VINSERT:
+			return "\tprivate final Area area = new Area(\n";
+		case RSBOT:
 			return "\tprivate final Area area = new Area(\n";
 		default:
 			return DEFAULT_TEXT;
@@ -110,9 +112,21 @@ public enum CodeFormat {
 		switch (this) {
 		case VINSERT:
 			return String.format("new Tile(%s, %s)", point.x, point.y);
+		case RSBOT:
+			return String.format("new Tile(%s, %s, 0)", point.x, point.y);
 		default:
 			return DEFAULT_TEXT;
 		}
+	}
+	
+	private String geFormattedTiles(final ArrayList<Point> tileArray) {
+		StringBuilder output = new StringBuilder(200);
+		for (int i = 0; i < tileArray.size(); i++) {
+			final boolean lastTile = tileArray.size() - 1 == i;
+			output.append("\t\t\t" + getTile(tileArray.get(i))
+					+ (lastTile ? "" : ",") + "\n");
+		}
+		return output.toString();
 	}
 
 	public List<WorldMap> getWorldMaps() {
