@@ -30,7 +30,7 @@ public class WorldMapModel {
 		tileArray = new ArrayList<Point>();
 		maxTileRadius = Configuration.MAX_TILE_RADIUS;
 		dragSensitivity = Configuration.INITIAL_DRAG_SENSITIVITY;
-		worldMap = WorldMap.OLD_SCHOOL;
+		worldMap = Configuration.INITIAL_WORLD_MAP;
 	}
 
 	public TileMode getMode() {

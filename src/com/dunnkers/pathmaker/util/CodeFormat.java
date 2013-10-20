@@ -38,8 +38,10 @@ public enum CodeFormat {
 	public String getCode(final ArrayList<Point> tileArray,
 			final TileMode tileMode) {
 		StringBuilder output = new StringBuilder(200);
-		// TODO convert to tile here, and store tile array as mouse points;
-		// more efficient in drawing paint
+		/*
+		 * TODO convert to tile here, and store tile array as mouse points: more
+		 * efficient in drawing paint
+		 */
 		switch (tileMode) {
 		case PATH:
 			output.append(getPath());

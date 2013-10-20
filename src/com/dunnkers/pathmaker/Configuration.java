@@ -25,7 +25,7 @@ public class Configuration {
 	public static final Dimension WINDOW_SIZE = new Dimension(750, 600);
 
 	/*
-	 * TODO ResourcePath: only store variable Resource once; it is now stored in
+	 * TODO only store variable Resource once; it is now stored in
 	 * all ResourcePaths
 	 */
 	public static final Resource RESOURCE = new Resource(DunkPathMaker.class);
@@ -66,7 +66,7 @@ public class Configuration {
 
 	public static final String LINK_WIKI = "https://github.com/dunnkers/DunkPathMaker/wiki";
 
-	/* TODO Default values; save them on computer */
+	/* TODO default values; save them on computer */
 	// default values
 	public static final int INITIAL_DRAG_SENSITIVITY = 10;
 	public static final int MAX_TILE_RADIUS = 15;
