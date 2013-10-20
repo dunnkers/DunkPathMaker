@@ -7,6 +7,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 
+import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.util.WorldMap;
 
 public class MapMenu extends JMenu {
@@ -23,10 +24,12 @@ public class MapMenu extends JMenu {
 			final JRadioButtonMenuItem map = new JRadioButtonMenuItem(worldMap.getName());
 			map.setEnabled(map.isEnabled());
 			map.setActionCommand(worldMap.getName());
+			if (worldMap.equals(Configuration.INITIAL_WORLD_MAP)) {
+				map.setSelected(true);
+			}
 			this.buttonGroup.add(map);
 			maps.add(map);
 		}
-		maps.get(0).setSelected(true);
 		init();
 	}
 

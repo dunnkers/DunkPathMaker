@@ -10,9 +10,8 @@ import com.dunnkers.util.resource.ResourcePath;
  * @author Dunnkers
  */
 public enum WorldMap {
-
-	OLD_SCHOOL("Old school (2007)", Configuration.IMAGE_MAP_07, true), RECENT(
-			"Recent (EOC)", Configuration.IMAGE_MAP_EOC, true);
+	OLD_SCHOOL("Old school (2007)", Configuration.IMAGE_MAP_07, true), 
+	RECENT("Recent (EOC)", Configuration.IMAGE_MAP_EOC, true);
 
 	private final String name;
 	private final ResourcePath resourcePath;

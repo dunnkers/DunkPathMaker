@@ -3,6 +3,7 @@ package com.dunnkers.pathmaker;
 import java.awt.Dimension;
 
 import com.dunnkers.pathmaker.util.CodeFormat;
+import com.dunnkers.pathmaker.util.WorldMap;
 import com.dunnkers.util.resource.Resource;
 import com.dunnkers.util.resource.ResourcePath;
 
@@ -70,6 +71,7 @@ public class Configuration {
 	public static final int INITIAL_DRAG_SENSITIVITY = 10;
 	public static final int MAX_TILE_RADIUS = 15;
 	public static final CodeFormat INITIAL_CODE_FORMAT = CodeFormat.RSBOT;
+	public static final WorldMap INITIAL_WORLD_MAP = WorldMap.RECENT;
 
 	private Configuration() {
 	}
