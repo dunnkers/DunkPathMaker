@@ -2,8 +2,8 @@ package com.dunnkers.pathmaker.ui.container;
 
 import java.awt.Component;
 
-import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.Configuration;
+import com.dunnkers.pathmaker.util.CodeFormat;
 
 public abstract class ContentPaneModel {
 

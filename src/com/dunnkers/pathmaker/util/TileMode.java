@@ -3,9 +3,7 @@ package com.dunnkers.pathmaker.util;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
-import com.dunnkers.awt.AwtMath;
 import com.dunnkers.awt.Graphic;
 import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
