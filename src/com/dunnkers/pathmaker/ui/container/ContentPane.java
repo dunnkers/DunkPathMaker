@@ -99,7 +99,7 @@ public class ContentPane extends Container {
 
 		public InteractiveWorldMapController(WorldMapModel worldMapModel,
 				WorldMapView worldMapView) {
-			super(worldMapModel, worldMapView, contentPaneModel);
+			super(worldMapModel, worldMapView);
 		}
 
 		@Override

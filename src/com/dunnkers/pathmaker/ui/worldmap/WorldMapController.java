@@ -15,7 +15,6 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
-import com.dunnkers.pathmaker.ui.container.ContentPaneModel;
 import com.dunnkers.pathmaker.util.CodeFormat;
 import com.dunnkers.pathmaker.util.TileMath;
 
@@ -32,15 +31,13 @@ public class WorldMapController {
 	private final MouseMotionAdapter mouseMotionAdapter;
 
 	private final UndoManager undoManager;
-	private final ContentPaneModel contentPaneModel;
 
 	public WorldMapController(final WorldMapModel worldMapModel,
-			final WorldMapView worldMapView, ContentPaneModel contentPaneModel) {
+			final WorldMapView worldMapView) {
 		this.worldMapModel = worldMapModel;
 		this.worldMapModel
 				.setModePropertyChangeListener(new ModePropertyChangeListener());
 		this.worldMapView = worldMapView;
-		this.contentPaneModel = contentPaneModel;
 
 		mouseAdapter = new MouseAdapter();
 		mouseMotionAdapter = new MouseMotionAdapter();
