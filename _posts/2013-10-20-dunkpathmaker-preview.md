@@ -3,5 +3,6 @@ layout: post
 title: DunkPathMaker preview
 ---
 
-### Preview
+Preview
+===================
 ![DunkPathMaker Preview](images/dunkpathmaker-preview.gif)

@@ -3,6 +3,6 @@ layout: default
 title: DunkPathMaker 
 ---
 
-        {% for post in site.posts %}
-            <p>{{ post.content }}</p>
-        {% endFor %}
+{% for post in site.posts %}
+<p>{{ post.excerpt  }}</p>
+{% endfor %}
