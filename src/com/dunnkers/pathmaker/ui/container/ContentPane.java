@@ -19,6 +19,7 @@ import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapView;
 import com.dunnkers.pathmaker.util.TileMath;
+import com.dunnkers.pathmaker.util.TileMode;
 import com.dunnkers.pathmaker.util.WorldMap;
 import com.dunnkers.util.ListenedArrayList;
 
@@ -122,9 +123,10 @@ public class ContentPane extends Container {
 					worldMapController.getUndoManager().canRedo());
 			toolBar.getClear().setEnabled(
 					worldMapModel.getTileArray().size() > 0);
+			final boolean canGenerate = worldMapModel.getTileArray().size() > (worldMapModel
+					.getMode().equals(TileMode.AREA) ? 1 : 0);
 			toolBar.getGenerate().setEnabled(
-					worldMapModel.getTileArray().size() > 0
-							&& contentPaneModel.getCodeFormat() != null);
+					canGenerate && contentPaneModel.getCodeFormat() != null);
 			worldMapView.repaintLabel();
 		}
 	}
