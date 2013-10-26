@@ -20,19 +20,20 @@ public enum TileMode {
 		switch (this) {
 		case PATH:
 			for (int i = 0; i < size; i++) {
-				Point current = TileMath.getPoint(worldMapModel.getTileArray()
+				final Point current = TileMath.getPoint(worldMapModel.getTileArray()
 						.get(i));
-				g.setColor(Graphic.setAlpha(Color.WHITE, 150));
-				g.fillOval(current.x - DOT_RADIUS / 2,
-						current.y - DOT_RADIUS / 2, DOT_RADIUS, DOT_RADIUS);
 				if (i > 0) {
 					final Point previous = TileMath.getPoint(worldMapModel.getTileArray().get(i - 1));
 					g.setColor(Graphic.setAlpha(Color.BLACK, 150));
 					g.drawLine(previous.x, previous.y, current.x, current.y);
 				}
+				/* 
+				 * draws a circle around the last tile to indicate the area 
+				 * suitable for another tile placement
+				*/
 				if (i == size - 1) {
 					g.setColor(Graphic.setAlpha(Color.BLACK, 50));
-					int radius = (int) TileMath.PIXELS_PER_TILE_HORIZONTAL
+					final int radius = (int) TileMath.PIXELS_PER_TILE_HORIZONTAL
 							* worldMapModel.getMaxTileRadius();
 					g.fillOval(current.x - (radius / 2), current.y
 							- (radius / 2), radius, radius);
@@ -40,8 +41,8 @@ public enum TileMode {
 			}
 			break;
 		case AREA:
-			final int[] xPoints = new int[worldMapModel.getTileArray().size()];
-			final int[] yPoints = new int[worldMapModel.getTileArray().size()];
+			final int[] xPoints = new int[size];
+			final int[] yPoints = new int[size];
 			for (int i = 0; i < size; i++) {
 				final Point point = TileMath.getPoint(worldMapModel
 						.getTileArray().get(i));
@@ -51,22 +52,29 @@ public enum TileMode {
 			if (xPoints == null || yPoints == null) {
 				break;
 			}
-			g.setColor(Graphic.setAlpha(Color.BLACK, 250));
-			g.drawPolygon(xPoints, yPoints, size);
-			g.setColor(Graphic.setAlpha(Color.WHITE, 150));
-			g.fillPolygon(xPoints, yPoints, size);
-			for (Point current : worldMapModel.getTileArray()) {
-				if (current == null) {
-					continue;
-				}
+			/*if (worldMapModel.getTileArray().size() == 2) {
+				
+			}else {*/
+				g.setColor(Graphic.setAlpha(Color.BLACK, 250));
+				g.drawPolygon(xPoints, yPoints, size);
 				g.setColor(Graphic.setAlpha(Color.WHITE, 150));
-				g.fillOval(current.x - DOT_RADIUS / 2,
-						current.y - DOT_RADIUS / 2, DOT_RADIUS, DOT_RADIUS);
-			}
+				g.fillPolygon(xPoints, yPoints, size);
+			/*}*/
 			break;
 		}
+		for (final Point currentTile : worldMapModel.getTileArray()) {
+			if (currentTile == null) {
+				continue;
+			}
+			final Point current = TileMath.getPoint(currentTile);
+			g.setColor(Graphic.setAlpha(Color.WHITE, 150));
+			g.fillOval(current.x - DOT_RADIUS / 2,
+					current.y - DOT_RADIUS / 2, DOT_RADIUS, DOT_RADIUS);
+		}
+		
+		
 		final Point lastPoint = TileMath.getPoint(worldMapModel.getTileArray()
-				.get(worldMapModel.getTileArray().size() - 1));
+				.get(size - 1));
 		switch (worldMapModel.getMode()) {
 		case PATH:
 			g.setColor(Graphic.setAlpha(

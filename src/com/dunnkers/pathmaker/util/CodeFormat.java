@@ -50,7 +50,6 @@ public enum CodeFormat {
 			output.append("\t);");
 			break;
 		case AREA:
-			/* TODO check if the array has at least two tiles */
 			output.append(getArea(tileArray));
 			switch (this) {
 			default:
