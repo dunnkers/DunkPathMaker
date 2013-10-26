@@ -10,8 +10,9 @@ import java.util.List;
  * @author Dunnkers
  */
 public enum CodeFormat {
-	OSBOT("OSBot", false, WorldMap.OLD_SCHOOL), 
-	TRIBOT("TRiBot", false, WorldMap.OLD_SCHOOL, WorldMap.RECENT), 
+	OSBOT("OSBot", true, WorldMap.OLD_SCHOOL), 
+	TRIBOT_OLD_SCHOOL("TRiBot", true, WorldMap.OLD_SCHOOL),
+	TRIBOT_RECENT("TRiBot", false, WorldMap.RECENT), 
 	RSBOT("RSBot", true, WorldMap.RECENT);
 
 	private final String name;
@@ -49,6 +50,7 @@ public enum CodeFormat {
 			output.append("\t);");
 			break;
 		case AREA:
+			/* TODO check if the array has at least two tiles */
 			output.append(getArea(tileArray));
 			switch (this) {
 			default:
@@ -68,6 +70,10 @@ public enum CodeFormat {
 		switch (this) {
 		case RSBOT:
 			return "\tprivate final Tile[] path = new Tile[] {\n";
+		case OSBOT:
+			return "\tprivate final Position[] path = new Position[] {\n";
+		case TRIBOT_OLD_SCHOOL:
+			return "\tprivate final RSTile[] path = new RSTile[] {\n";
 		default:
 			return DEFAULT_TEXT;
 		}
@@ -76,16 +82,27 @@ public enum CodeFormat {
 	private String getArea(final ArrayList<Point> tileArray) {
 		switch (this) {
 		case RSBOT:
+		case OSBOT:
 			return "\tprivate final Area area = new Area(\n";
+		case TRIBOT_OLD_SCHOOL:
+			return "\tprivate final RSArea area = new RSArea(\n";
 		default:
 			return DEFAULT_TEXT;
 		}
 	}
 
 	private String getTile(final Point point) {
+		return String.format(getTileFormat(), point.x, point.y);
+	}
+	
+	private String getTileFormat() {
 		switch (this) {
 		case RSBOT:
-			return String.format("new Tile(%s, %s, 0)", point.x, point.y);
+			return "new Tile(%s, %s, 0)";
+		case OSBOT:
+			return "new Position(%s, %s, 0)";
+		case TRIBOT_OLD_SCHOOL:
+			return "new RSTile(%s, %s, 0)";
 		default:
 			return DEFAULT_TEXT;
 		}
