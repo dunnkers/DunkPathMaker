@@ -74,6 +74,12 @@ public class WorldMapController {
 			worldMapView.setCursor(Cursor
 					.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		}
+		
+		@Override
+		public void mouseExited(MouseEvent e) {
+			worldMapModel.setMouseLocation(null);
+			worldMapView.repaintLabel();
+		}
 
 		public Point getInitialDragPoint() {
 			return initialDragPoint;
