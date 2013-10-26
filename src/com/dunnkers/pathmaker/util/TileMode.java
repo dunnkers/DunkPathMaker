@@ -15,7 +15,6 @@ public enum TileMode {
 
 	public void paint(final Graphics g, final WorldMapModel worldMapModel,
 			final ContentPaneModel contentPaneModel) {
-		boolean drawLineToMouse = true;
 		final int size = worldMapModel.getTileArray().size();
 		switch (this) {
 		case PATH:
@@ -52,14 +51,10 @@ public enum TileMode {
 			if (xPoints == null || yPoints == null) {
 				break;
 			}
-			/*if (worldMapModel.getTileArray().size() == 2) {
-				
-			}else {*/
-				g.setColor(Graphic.setAlpha(Color.BLACK, 250));
-				g.drawPolygon(xPoints, yPoints, size);
-				g.setColor(Graphic.setAlpha(Color.WHITE, 150));
-				g.fillPolygon(xPoints, yPoints, size);
-			/*}*/
+			g.setColor(Graphic.setAlpha(Color.BLACK, 250));
+			g.drawPolygon(xPoints, yPoints, size);
+			g.setColor(Graphic.setAlpha(Color.WHITE, 150));
+			g.fillPolygon(xPoints, yPoints, size);
 			break;
 		}
 		for (final Point currentTile : worldMapModel.getTileArray()) {
@@ -85,10 +80,12 @@ public enum TileMode {
 			g.setColor(Color.BLACK);
 			break;
 		}
-		if (drawLineToMouse) {
-			g.drawLine(lastPoint.x, lastPoint.y,
-					worldMapModel.getMouseLocation().x,
-					worldMapModel.getMouseLocation().y);
-		}
+		final Point mouseLocation = worldMapModel.getMouseLocation();
+		g.drawLine(lastPoint.x, lastPoint.y,
+				mouseLocation.x,
+				mouseLocation.y);
+		g.setColor(Graphic.setAlpha(Color.WHITE, 150));
+		g.fillOval(mouseLocation.x - DOT_RADIUS / 2,
+				mouseLocation.y - DOT_RADIUS / 2, DOT_RADIUS, DOT_RADIUS);
 	}
 }
