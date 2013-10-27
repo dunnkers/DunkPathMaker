@@ -38,7 +38,7 @@ public class SettingsMenu extends JMenu {
 		this.buttonGroup = new ButtonGroup();
 		{
 			this.path = new JRadioButtonMenuItem("Path");
-			this.path.setSelected(true);
+			this.path.setSelected(worldMapModel.getMode().equals(TileMode.PATH));
 			this.path.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
@@ -49,6 +49,7 @@ public class SettingsMenu extends JMenu {
 		}
 		{
 			this.area = new JRadioButtonMenuItem("Area");
+			this.area.setSelected(worldMapModel.getMode().equals(TileMode.AREA));
 			this.area.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
