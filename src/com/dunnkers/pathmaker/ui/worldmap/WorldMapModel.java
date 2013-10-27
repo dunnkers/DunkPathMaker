@@ -9,6 +9,7 @@ import java.util.prefs.Preferences;
 import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.util.TileMode;
 import com.dunnkers.pathmaker.util.WorldMap;
+import com.dunnkers.util.Enums;
 
 /**
  * 
@@ -28,25 +29,22 @@ public class WorldMapModel {
 	private final Preferences preferences;
 
 	public WorldMapModel() {
-		preferences = Preferences.userNodeForPackage(Configuration.PREFERENCE_PACKAGE);
-		{
-			mode = Configuration.INITIAL_MODE;
-			final String modeString = preferences.get(Configuration.MODE_KEY,
-					Configuration.INITIAL_MODE.name());
-			for (final TileMode mode : TileMode.values()) {
-				if (modeString.equals(mode.name())) {
-					this.mode = mode;
-					break;
-				}
-			}
-		}
+		preferences = Preferences
+				.userNodeForPackage(Configuration.PREFERENCE_PACKAGE);
+		mode = Enums.findEnumObject(TileMode.class, preferences.get(
+				Configuration.MODE_KEY,
+				Configuration.INITIAL_MODE.name()),
+				Configuration.INITIAL_MODE);
 		mouseLocation = new Point(0, 0);
 		tileArray = new ArrayList<Point>();
 		maxTileRadius = Configuration.MAX_TILE_RADIUS;
 		dragSensitivity = preferences.getInt(
 				Configuration.DRAG_SENSITIVITY_KEY,
 				Configuration.INITIAL_DRAG_SENSITIVITY);
-		worldMap = Configuration.INITIAL_WORLD_MAP;
+		worldMap = Enums.findEnumObject(WorldMap.class, preferences.get(
+				Configuration.WORLD_MAP_KEY,
+				Configuration.INITIAL_WORLD_MAP.name()),
+				Configuration.INITIAL_WORLD_MAP);
 	}
 
 	public TileMode getMode() {
@@ -112,7 +110,12 @@ public class WorldMapModel {
 		return worldMap;
 	}
 
+	/*
+	 * TODO fix; when on old school map with osbot selected, then going to
+	 * recent, does not select a new code format
+	 */
 	public void setWorldMap(WorldMap worldMap) {
 		this.worldMap = worldMap;
+		preferences.put(Configuration.WORLD_MAP_KEY, this.worldMap.name());
 	}
 }

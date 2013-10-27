@@ -21,7 +21,7 @@ public class MenuBar extends JMenuBar {
 				contentPaneModel,
 				worldMapModel);
 		this.settingsMenu.setIcon(Configuration.ICON_SETTINGS.getIcon());
-		this.mapMenu = new MapMenu("Map");
+		this.mapMenu = new MapMenu("Map", worldMapModel);
 		this.mapMenu.setIcon(Configuration.ICON_MAP_16.getIcon());
 		this.help = new HelpMenu("Help", contentPaneModel.getComponent());
 		this.help.setIcon(Configuration.ICON_HELP.getIcon());
