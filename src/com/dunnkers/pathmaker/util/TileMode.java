@@ -46,7 +46,7 @@ public enum TileMode {
 			 * add one tile additionally to the tiles the user added, to display
 			 * a polygon as the mouse moves
 			 */
-			final int areaSize = mouseLocation == null ? size : /*if mouse on scren*/ size + 1;
+			final int areaSize = mouseLocation == null ? size : size + 1;
 			final int[] xPoints = new int[areaSize];
 			final int[] yPoints = new int[areaSize];
 			for (int i = 0; i < areaSize; i++) {
