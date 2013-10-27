@@ -3,6 +3,7 @@ package com.dunnkers.pathmaker;
 import java.awt.Dimension;
 
 import com.dunnkers.pathmaker.util.CodeFormat;
+import com.dunnkers.pathmaker.util.TileMode;
 import com.dunnkers.pathmaker.util.WorldMap;
 import com.dunnkers.util.resource.Resource;
 import com.dunnkers.util.resource.ResourcePath;
@@ -72,9 +73,14 @@ public class Configuration {
 	/* TODO default values; save them on computer */
 	// default values
 	public static final int INITIAL_DRAG_SENSITIVITY = 10;
+	public static final String DRAG_SENSITIVITY_KEY = "dragSensitivity";
 	public static final int MAX_TILE_RADIUS = 15;
 	public static final CodeFormat INITIAL_CODE_FORMAT = CodeFormat.RSBOT;
 	public static final WorldMap INITIAL_WORLD_MAP = WorldMap.RECENT;
+	public static final TileMode INITIAL_MODE = TileMode.PATH;
+	public static final String MODE_KEY = "mode";
+	
+	public static final Class<?> PREFERENCE_PACKAGE = DunkPathMaker.class;
 
 	private Configuration() {
 	}

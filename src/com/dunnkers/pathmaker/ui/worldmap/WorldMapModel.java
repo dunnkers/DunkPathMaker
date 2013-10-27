@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
 
 import com.dunnkers.pathmaker.Configuration;
 import com.dunnkers.pathmaker.util.TileMode;
@@ -24,12 +25,27 @@ public class WorldMapModel {
 
 	private PropertyChangeListener modePropertyChangeListener;
 
+	private final Preferences preferences;
+
 	public WorldMapModel() {
-		mode = TileMode.PATH;
+		preferences = Preferences.userNodeForPackage(Configuration.PREFERENCE_PACKAGE);
+		{
+			mode = Configuration.INITIAL_MODE;
+			final String modeString = preferences.get(Configuration.MODE_KEY,
+					Configuration.INITIAL_MODE.name());
+			for (final TileMode mode : TileMode.values()) {
+				if (modeString.equals(mode.name())) {
+					this.mode = mode;
+					break;
+				}
+			}
+		}
 		mouseLocation = new Point(0, 0);
 		tileArray = new ArrayList<Point>();
 		maxTileRadius = Configuration.MAX_TILE_RADIUS;
-		dragSensitivity = Configuration.INITIAL_DRAG_SENSITIVITY;
+		dragSensitivity = preferences.getInt(
+				Configuration.DRAG_SENSITIVITY_KEY,
+				Configuration.INITIAL_DRAG_SENSITIVITY);
 		worldMap = Configuration.INITIAL_WORLD_MAP;
 	}
 
@@ -45,11 +61,12 @@ public class WorldMapModel {
 		if (modePropertyChangeListener != null) {
 			modePropertyChangeListener
 					.propertyChange(new PropertyChangeEvent(source,
-							"mode",
+							Configuration.MODE_KEY,
 							this.mode,
 							mode));
 		}
 		this.mode = mode;
+		preferences.put(Configuration.MODE_KEY, this.mode.name());
 	}
 
 	public Point getMouseLocation() {
@@ -82,6 +99,8 @@ public class WorldMapModel {
 
 	public void setDragSensitivity(int dragSensitivity) {
 		this.dragSensitivity = dragSensitivity;
+		preferences.putInt(Configuration.DRAG_SENSITIVITY_KEY,
+				this.dragSensitivity);
 	}
 
 	public void setModePropertyChangeListener(
