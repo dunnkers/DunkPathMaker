@@ -47,7 +47,7 @@ public enum CodeFormat {
 		case PATH:
 			output.append(getPath());
 			output.append(getFormattedTiles(tileArray));
-			output.append("\t);");
+			output.append("\t};");
 			break;
 		case AREA:
 			output.append(getArea(tileArray));
