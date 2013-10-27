@@ -346,6 +346,14 @@ Full-Width Styles
   height: 150px;
 }
 
+.forum-logo-osbot {
+  width:150px;
+  height:60px;
+  margin-top: 65px;
+  margin-bottom: 46px;
+  vertical-align: center;
+}
+
 #main_content_wrap {
   background: #f2f2f2;
   border-top: 1px solid #111;
@@ -358,6 +366,11 @@ Full-Width Styles
 
 #footer_wrap {
   background: #212121;
+}
+
+.row {
+  padding: 10px 0;
+  margin-bottom: 50px;
 }
 
 /*******************************************************************************
