@@ -16,7 +16,7 @@ public class Configuration {
 
 	// applications settings
 	public static final double APPLICATION_VERSION_MAJOR = 2;
-	public static final double APPLICATION_VERSION_MINOR = 0.07;
+	public static final double APPLICATION_VERSION_MINOR = 0.08;
 	public static final double APPLICATION_VERSION = APPLICATION_VERSION_MAJOR
 			+ APPLICATION_VERSION_MINOR;
 	public static final String APPLICATION_TITLE = "DunkPathMaker";
