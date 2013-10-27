@@ -35,7 +35,6 @@ public class CodeFormatMenu extends JMenu {
 	public void construct() {
 		removeAll();
 		final ButtonGroup buttonGroup = new ButtonGroup();
-		boolean hasSelectedOne = false;
 		for (final CodeFormat codeFormat : CodeFormat.values()) {
 			boolean thisCodeFormatSupportsCurrentMap = false;
 			for (final WorldMap worldMap : codeFormat.getWorldMaps()) {
@@ -49,20 +48,12 @@ public class CodeFormatMenu extends JMenu {
 			}
 			final JRadioButtonMenuItem item = new JRadioButtonMenuItem(codeFormat
 					.getName());
-			item.setSelected(false);
-			if (codeFormat.isEnabled() && !hasSelectedOne) {
-				item.setSelected(true);
-				hasSelectedOne = true;
-				contentPaneModel.setCodeFormat(codeFormat);
-			}
+			item.setSelected(contentPaneModel.getCodeFormat().equals(codeFormat));
 			item.setEnabled(codeFormat.isEnabled());
 			item.setActionCommand(codeFormat.name());
 			item.addActionListener(codeFormatActionListener);
 			buttonGroup.add(item);
 			add(item);
-		}
-		if (!hasSelectedOne) {
-			contentPaneModel.setCodeFormat(null);
 		}
 	}
 

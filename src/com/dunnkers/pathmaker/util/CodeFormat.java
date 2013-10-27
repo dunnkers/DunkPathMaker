@@ -12,7 +12,7 @@ import java.util.List;
 public enum CodeFormat {
 	OSBOT("OSBot", true, WorldMap.OLD_SCHOOL), 
 	TRIBOT_OLD_SCHOOL("TRiBot", true, WorldMap.OLD_SCHOOL),
-	TRIBOT_RECENT("TRiBot", false, WorldMap.RECENT), 
+	TRIBOT_RECENT("TRiBot", true, WorldMap.RECENT), 
 	RSBOT("RSBot", true, WorldMap.RECENT);
 
 	private final String name;

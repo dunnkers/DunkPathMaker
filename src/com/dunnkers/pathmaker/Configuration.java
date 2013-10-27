@@ -14,6 +14,7 @@ import com.dunnkers.util.resource.ResourcePath;
  */
 public class Configuration {
 
+	// applications settings
 	public static final double APPLICATION_VERSION_MAJOR = 2;
 	public static final double APPLICATION_VERSION_MINOR = 0.06;
 	public static final double APPLICATION_VERSION = APPLICATION_VERSION_MAJOR
@@ -21,6 +22,7 @@ public class Configuration {
 	public static final String APPLICATION_TITLE = "DunkPathMaker";
 	public static final String APPLICATION_ALIAS = "Create your paths with ease!";
 
+	// window settings
 	public static final String WINDOW_TITLE = APPLICATION_TITLE + " - "
 			+ APPLICATION_ALIAS;
 	public static final Dimension WINDOW_SIZE = new Dimension(750, 600);
@@ -29,6 +31,7 @@ public class Configuration {
 	 * TODO only store variable Resource once; it is now stored in
 	 * all ResourcePaths
 	 */
+	// resources
 	public static final Resource RESOURCE = new Resource(DunkPathMaker.class);
 	public static final ResourcePath IMAGE_MAP_07 = new ResourcePath(RESOURCE,
 			"res/runescape-map-07.jpg");
@@ -70,17 +73,22 @@ public class Configuration {
 	public static final String LINK_WIKI = "https://github.com/dunnkers/DunkPathMaker/wiki";
 	public static final String LINK_FORUMS = "http://dunnkers.github.io/DunkPathMaker/";
 
-	/* TODO default values; save them on computer */
-	// default values
+	/* preferences */
+	public static final Class<?> PREFERENCE_PACKAGE = DunkPathMaker.class;
+	// drag sensitivity
 	public static final int INITIAL_DRAG_SENSITIVITY = 10;
 	public static final String DRAG_SENSITIVITY_KEY = "dragSensitivity";
-	public static final int MAX_TILE_RADIUS = 15;
+	// code format
 	public static final CodeFormat INITIAL_CODE_FORMAT = CodeFormat.RSBOT;
+	public static final String CODE_FORMAT_KEY = "codeFormat";
+	// world map
 	public static final WorldMap INITIAL_WORLD_MAP = WorldMap.RECENT;
+	public static final String WORLD_MAP_KEY = "worldMap";
+	// mode
 	public static final TileMode INITIAL_MODE = TileMode.PATH;
 	public static final String MODE_KEY = "mode";
 	
-	public static final Class<?> PREFERENCE_PACKAGE = DunkPathMaker.class;
+	public static final int MAX_TILE_RADIUS = 15;
 
 	private Configuration() {
 	}
