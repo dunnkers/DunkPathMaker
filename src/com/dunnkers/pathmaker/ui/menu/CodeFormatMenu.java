@@ -56,7 +56,7 @@ public class CodeFormatMenu extends JMenu {
 				contentPaneModel.setCodeFormat(codeFormat);
 			}
 			item.setEnabled(codeFormat.isEnabled());
-			item.setActionCommand(codeFormat.getName());
+			item.setActionCommand(codeFormat.name());
 			item.addActionListener(codeFormatActionListener);
 			buttonGroup.add(item);
 			add(item);
@@ -71,7 +71,7 @@ public class CodeFormatMenu extends JMenu {
 		@Override
 		public void actionPerformed(final ActionEvent e) {
 			for (final CodeFormat codeFormat : CodeFormat.values()) {
-				if (codeFormat.getName().equals(e.getActionCommand())) {
+				if (codeFormat.name().equals(e.getActionCommand())) {
 					contentPaneModel.setCodeFormat(codeFormat);
 				}
 			}
