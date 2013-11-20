@@ -38,79 +38,76 @@ public enum CodeFormat {
 
 	public String getCode(final ArrayList<Point> tileArray,
 			final TileMode tileMode) {
-		StringBuilder output = new StringBuilder(200);
+		final StringBuilder output = new StringBuilder(200);
 		/*
 		 * TODO convert to tile here, and store tile array as mouse points: more
 		 * efficient in drawing paint
 		 */
+		Object[] args = null;
 		switch (tileMode) {
 		case PATH:
-			output.append(getPath());
-			output.append(getFormattedTiles(tileArray));
-			output.append("\t};");
+			args = getPath();
 			break;
 		case AREA:
-			output.append(String.format("%s" + getFormattedTiles(tileArray)
-					+ "%s", getArea(tileArray)));
+			args = getArea();
 			break;
-		default:
-			output.append(DEFAULT_TEXT);
-			break;
-		}
-		return output.toString();
-	}
-
-	private String getPath() {
-		switch (this) {
-		case RSBOT:
-			return "\tprivate final Tile[] path = new Tile[] {\n";
-		case OSBOT:
-			return "\tprivate final Position[] path = new Position[] {\n";
-		case TRIBOT_OLD_SCHOOL:
-			return "\tprivate final RSTile[] path = new RSTile[] {\n";
 		default:
 			return DEFAULT_TEXT;
 		}
+		output.append(String.format("\tprivate final %s"
+				+ getFormattedTiles(tileArray) + "%s", args));
+		return output.toString();
 	}
 
-	private Object[] getArea(final ArrayList<Point> tileArray) {
+	private Object[] getPath() {
 		switch (this) {
 		case RSBOT:
-			return new String[] {
-					"\tprivate final Area area = new Area(\n",
-					"\t);" };
+			return new String[] { "Tile[] path = new Tile[] {\n", "\t};" };
 		case OSBOT:
 			return new String[] {
-					"\tprivate final Area area = new Area(new Position[] {\n",
+					"Position[] path = new Position[] {\n",
+					"\t};" };
+		case TRIBOT_OLD_SCHOOL:
+			return new String[] { "RSTile[] path = new RSTile[] {\n", "\t};" };
+		default:
+			return new String[] { DEFAULT_TEXT };
+		}
+	}
+
+	private Object[] getArea() {
+		switch (this) {
+		case RSBOT:
+			return new String[] { "Area area = new Area(\n", "\t);" };
+		case OSBOT:
+			return new String[] {
+					"Area area = new Area(new Position[] {\n",
 					"\t});" };
 		case TRIBOT_OLD_SCHOOL:
-			return new String[] {
-					"\tprivate final RSArea area = new RSArea(\n",
-					"\t);" };
+			return new String[] { "RSArea area = new RSArea(\n", "\t);" };
 		default:
 			return new String[] { DEFAULT_TEXT };
 		}
 	}
 
 	private String getTile(final Point point) {
-		return String.format(getTileFormat(), point.x, point.y);
+		return String.format(getTileFormat(), point.x, point.y, 0);
 	}
-	
+
 	private String getTileFormat() {
 		switch (this) {
 		case RSBOT:
-			return "new Tile(%s, %s, 0)";
+			return "new Tile(%d, %d, %d)";
 		case OSBOT:
-			return "new Position(%s, %s, 0)";
+			return "new Position(%d, %d, %d)";
 		case TRIBOT_OLD_SCHOOL:
-			return "new RSTile(%s, %s, 0)";
+			return "new RSTile(%d, %d, %d)";
 		default:
 			return DEFAULT_TEXT;
 		}
 	}
-	
+
 	private String getFormattedTiles(final ArrayList<Point> tileArray) {
-		StringBuilder output = new StringBuilder(200);
+		final StringBuilder output = new StringBuilder(200);
 		for (int i = 0; i < tileArray.size(); i++) {
 			final boolean lastTile = tileArray.size() - 1 == i;
 			output.append("\t\t\t" + getTile(tileArray.get(i))
