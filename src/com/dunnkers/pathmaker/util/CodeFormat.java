@@ -50,13 +50,8 @@ public enum CodeFormat {
 			output.append("\t};");
 			break;
 		case AREA:
-			output.append(getArea(tileArray));
-			switch (this) {
-			default:
-				output.append(getFormattedTiles(tileArray));
-				break;
-			}
-			output.append("\t);");
+			output.append(String.format("%s" + getFormattedTiles(tileArray)
+					+ "%s", getArea(tileArray)));
 			break;
 		default:
 			output.append(DEFAULT_TEXT);
@@ -78,15 +73,22 @@ public enum CodeFormat {
 		}
 	}
 
-	private String getArea(final ArrayList<Point> tileArray) {
+	private Object[] getArea(final ArrayList<Point> tileArray) {
 		switch (this) {
 		case RSBOT:
+			return new String[] {
+					"\tprivate final Area area = new Area(\n",
+					"\t);" };
 		case OSBOT:
-			return "\tprivate final Area area = new Area(\n";
+			return new String[] {
+					"\tprivate final Area area = new Area(new Position[] {\n",
+					"\t});" };
 		case TRIBOT_OLD_SCHOOL:
-			return "\tprivate final RSArea area = new RSArea(\n";
+			return new String[] {
+					"\tprivate final RSArea area = new RSArea(\n",
+					"\t);" };
 		default:
-			return DEFAULT_TEXT;
+			return new String[] { DEFAULT_TEXT };
 		}
 	}
 
