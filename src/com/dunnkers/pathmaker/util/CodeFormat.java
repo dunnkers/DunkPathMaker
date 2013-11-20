@@ -43,20 +43,24 @@ public enum CodeFormat {
 		 * TODO convert to tile here, and store tile array as mouse points: more
 		 * efficient in drawing paint
 		 */
-		Object[] args = null;
-		switch (tileMode) {
-		case PATH:
-			args = getPath();
-			break;
-		case AREA:
-			args = getArea();
-			break;
-		default:
+		Object[] args = getCodeFormatArguments(tileMode);
+		if (args == null) {
 			return DEFAULT_TEXT;
 		}
 		output.append(String.format("\tprivate final %s"
 				+ getFormattedTiles(tileArray) + "%s", args));
 		return output.toString();
+	}
+	
+	private final Object[] getCodeFormatArguments(final TileMode tileMode) {
+		switch (tileMode) {
+		case PATH:
+			return getPath();
+		case AREA:
+			return getArea();
+		default:
+			return null;
+		}
 	}
 
 	private Object[] getPath() {
@@ -70,7 +74,7 @@ public enum CodeFormat {
 		case TRIBOT_OLD_SCHOOL:
 			return new String[] { "RSTile[] path = new RSTile[] {\n", "\t};" };
 		default:
-			return new String[] { DEFAULT_TEXT };
+			return null;
 		}
 	}
 
@@ -85,7 +89,7 @@ public enum CodeFormat {
 		case TRIBOT_OLD_SCHOOL:
 			return new String[] { "RSArea area = new RSArea(\n", "\t);" };
 		default:
-			return new String[] { DEFAULT_TEXT };
+			return null;
 		}
 	}
 
