@@ -19,7 +19,6 @@ import com.dunnkers.pathmaker.ui.worldmap.WorldMapController;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapModel;
 import com.dunnkers.pathmaker.ui.worldmap.WorldMapView;
 import com.dunnkers.pathmaker.util.TileMath;
-import com.dunnkers.pathmaker.util.TileMode;
 import com.dunnkers.pathmaker.util.WorldMap;
 import com.dunnkers.util.ListenedArrayList;
 
