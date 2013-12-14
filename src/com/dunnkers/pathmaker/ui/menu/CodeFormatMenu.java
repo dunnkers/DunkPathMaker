@@ -97,6 +97,7 @@ public class CodeFormatMenu extends JMenu {
 					contentPaneModel.setCodeFormat(codeFormat);
 				}
 			}
+			contentPaneModel.getTileArrayChangeListener().stateChanged(null);
 		}
 	}
 }
