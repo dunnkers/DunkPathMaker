@@ -43,6 +43,7 @@ public class SettingsMenu extends JMenu {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					worldMapModel.setMode(TileMode.PATH, path);
+					contentPaneModel.getTileArrayChangeListener().stateChanged(null);
 				}
 			});
 			this.path.setIcon(Configuration.ICON_PATH.getIcon());
@@ -54,6 +55,7 @@ public class SettingsMenu extends JMenu {
 				@Override
 				public void actionPerformed(final ActionEvent e) {
 					worldMapModel.setMode(TileMode.AREA, area);
+					contentPaneModel.getTileArrayChangeListener().stateChanged(null);
 				}
 			});
 			this.area.setIcon(Configuration.ICON_AREA.getIcon());
