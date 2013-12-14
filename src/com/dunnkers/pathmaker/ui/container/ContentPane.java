@@ -34,7 +34,6 @@ public class ContentPane extends Container {
 	private final JLabel statusLabel;
 
 	private final WorldMapModel worldMapModel;
-	private final TileArrayChangeListener tileArrayChangeListener;
 	private final WorldMapView worldMapView;
 	private final InteractiveWorldMapController worldMapController;
 
@@ -44,9 +43,9 @@ public class ContentPane extends Container {
 		this.contentPaneModel = contentPaneModel;
 
 		worldMapModel = new WorldMapModel();
-		this.tileArrayChangeListener = new TileArrayChangeListener();
+		this.contentPaneModel.setTileArrayChangeListener(new TileArrayChangeListener());
 		worldMapModel.setTileArray(new ListenedArrayList<Point>(200,
-				tileArrayChangeListener));
+				this.contentPaneModel.getTileArrayChangeListener()));
 		worldMapView = new WorldMapView(worldMapModel, contentPaneModel);
 		worldMapController = new InteractiveWorldMapController(worldMapModel,
 				worldMapView);
@@ -64,7 +63,7 @@ public class ContentPane extends Container {
 							worldMapView.getLabel().setWorldMap(worldMap);
 							menuBar.getSettingsMenu().getCodeFormatMenu()
 									.construct();
-							tileArrayChangeListener.stateChanged(null);
+							contentPaneModel.getTileArrayChangeListener().stateChanged(null);
 							break;
 						}
 					}
