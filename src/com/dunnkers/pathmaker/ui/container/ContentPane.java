@@ -123,10 +123,11 @@ public class ContentPane extends Container {
 					worldMapController.getUndoManager().canRedo());
 			toolBar.getClear().setEnabled(
 					worldMapModel.getTileArray().size() > 0);
-			final boolean canGenerate = worldMapModel.getTileArray().size() > (worldMapModel
-					.getMode().equals(TileMode.AREA) ? 1 : 0);
 			toolBar.getGenerate().setEnabled(
-					canGenerate && contentPaneModel.getCodeFormat() != null);
+					contentPaneModel.getCodeFormat() != null
+							&& contentPaneModel.getCodeFormat().canGenerate(
+									worldMapModel.getTileArray(),
+									worldMapModel.getMode()));
 			worldMapView.repaintLabel();
 		}
 	}

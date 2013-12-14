@@ -43,7 +43,7 @@ public enum CodeFormat {
 		 * TODO convert to tile here, and store tile array as mouse points: more
 		 * efficient in drawing paint
 		 */
-		Object[] args = getCodeFormatArguments(tileMode);
+		final Object[] args = getCodeFormatArguments(tileMode);
 		if (args == null) {
 			return DEFAULT_TEXT;
 		}
@@ -122,5 +122,21 @@ public enum CodeFormat {
 
 	public List<WorldMap> getWorldMaps() {
 		return worldMaps;
+	}
+
+	public boolean canGenerate(final ArrayList<Point> tileArray, final TileMode tileMode) {
+		switch (tileMode) {
+		case PATH:
+			return tileArray.size() > 0;
+		case AREA:
+			switch (this) {
+			case OSBOT:
+				return tileArray.size() >= 3;
+			default:
+				return tileArray.size() >= 2;
+			}
+		default:
+			return false;
+		}
 	}
 }
