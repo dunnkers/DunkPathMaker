@@ -2,8 +2,11 @@ package com.dunnkers.pathmaker.ui.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 
@@ -54,6 +57,34 @@ public class CodeFormatMenu extends JMenu {
 			item.addActionListener(codeFormatActionListener);
 			buttonGroup.add(item);
 			add(item);
+		}
+		/* When the new selection of code formats does not include 
+		 * the one that's stored
+		 */
+		if (buttonGroup.getSelection() == null) {
+			final Enumeration<AbstractButton> elements = buttonGroup
+					.getElements();
+			if (elements == null) {
+				return;
+			}
+			while (elements.hasMoreElements()) {
+				try {
+					final ButtonModel buttonModel = elements.nextElement()
+							.getModel();
+					if (!buttonModel.isEnabled()) {
+						continue;
+					}
+					buttonGroup.setSelected(buttonModel, true);
+					for (final CodeFormat codeFormat : CodeFormat.values()) {
+						if (codeFormat.name().equals(
+								buttonModel.getActionCommand())) {
+							contentPaneModel.setCodeFormat(codeFormat);
+						}
+					}
+				} catch (Exception e) {
+					continue;
+				}
+			}
 		}
 	}
 
