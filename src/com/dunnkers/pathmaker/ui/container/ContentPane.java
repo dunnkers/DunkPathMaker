@@ -51,6 +51,7 @@ public class ContentPane extends Container {
 				worldMapView);
 
 		{
+			// TODO Move the actionlistener to the MapMenu class itself
 			menuBar = new MenuBar(contentPaneModel, worldMapModel);
 			menuBar.getMapMenu().addMapActionListener(new ActionListener() {
 				@Override

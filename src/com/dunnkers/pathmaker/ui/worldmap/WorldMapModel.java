@@ -110,10 +110,6 @@ public class WorldMapModel {
 		return worldMap;
 	}
 
-	/*
-	 * TODO fix; when on old school map with osbot selected, then going to
-	 * recent, does not select a new code format
-	 */
 	public void setWorldMap(WorldMap worldMap) {
 		this.worldMap = worldMap;
 		preferences.put(Configuration.WORLD_MAP_KEY, this.worldMap.name());
