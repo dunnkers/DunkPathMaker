@@ -108,7 +108,7 @@ public class ContentPane extends Container {
 			final Point tilePoint = TileMath.getTile(e.getPoint());
 			final String tile = String.format("(%s, %s)", tilePoint.x,
 					tilePoint.y);
-			statusLabel.setText("Current tile: " + tile);
+			statusLabel.setText("Current tile: " + tile + " Region: " + (tilePoint.x >> 6) + ", " + (tilePoint.y >> 6));
 		}
 	}
 
